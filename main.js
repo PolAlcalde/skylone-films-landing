@@ -18,7 +18,7 @@ const modalVideo = modal?.querySelector(".modal__video");
 const setupHeroAutoplay = () => {
   if (!(heroVideo instanceof HTMLVideoElement)) return;
 
-  let triedGesture = false;
+  let gestureRetryUsed = false;
   const gestureEvents = ["click", "touchstart", "scroll", "keydown"];
 
   const removeGestureListeners = () => {
@@ -33,8 +33,8 @@ const setupHeroAutoplay = () => {
     const playAttempt = heroVideo.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
       playAttempt.catch(() => {
-        if (!triedGesture) {
-          triedGesture = true;
+        if (!gestureRetryUsed) {
+          gestureRetryUsed = true;
           gestureEvents.forEach((eventName) => {
             window.addEventListener(eventName, handleGesture, { passive: true });
           });
@@ -48,7 +48,12 @@ const setupHeroAutoplay = () => {
     tryPlay();
   };
 
-  tryPlay();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", tryPlay, { once: true });
+  } else {
+    tryPlay();
+  }
+  window.addEventListener("load", tryPlay, { once: true });
 };
 
 setupHeroAutoplay();
@@ -96,11 +101,24 @@ const modalContent = {
   },
 };
 
+const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
+
+const lockScroll = () => {
+  const scrollbarWidth = getScrollbarWidth();
+  body.style.overflow = "hidden";
+  body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : "";
+};
+
+const unlockScroll = () => {
+  body.style.overflow = "";
+  body.style.paddingRight = "";
+};
+
 const openMenu = () => {
   if (!menuOverlay) return;
   menuOverlay.classList.add("is-open");
   menuOverlay.setAttribute("aria-hidden", "false");
-  body.style.overflow = "hidden";
+  lockScroll();
   body.classList.add("menu-open");
 };
 
@@ -108,7 +126,7 @@ const closeMenu = () => {
   if (!menuOverlay) return;
   menuOverlay.classList.remove("is-open");
   menuOverlay.setAttribute("aria-hidden", "true");
-  body.style.overflow = "";
+  unlockScroll();
   body.classList.remove("menu-open");
 };
 
@@ -194,7 +212,7 @@ const openModal = (key) => {
   setModalVideo();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  body.style.overflow = "hidden";
+  lockScroll();
   focusModalClose();
 };
 
@@ -230,7 +248,7 @@ const closeModal = () => {
   }
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
-  body.style.overflow = "";
+  unlockScroll();
   if (lastModalTrigger instanceof HTMLElement) {
     lastModalTrigger.focus();
   }
