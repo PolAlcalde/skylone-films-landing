@@ -8,15 +8,52 @@ const menuLinks = menuOverlay?.querySelectorAll("a") ?? [];
 
 const modal = document.getElementById("modal");
 const modalTitle = modal?.querySelector("#modal-title");
+const modalLabel = modal?.querySelector("#modal-label");
 const modalSynopsis = modal?.querySelector(".modal__synopsis");
+const modalDetails = modal?.querySelector("#modal-details");
 const modalVideo = modal?.querySelector("video");
 const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
 
 const modalContent = {
   sobre: {
+    label: "Sobre mí",
     title: "Sobre mí",
     synopsis:
       "Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual. Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.",
+    details:
+      "<p>Trabajo desde Barcelona con marcas que quieren imágenes silenciosas, elegantes y con intención. Cada proyecto se diseña para transmitir atmósfera y carácter cinematográfico.</p>",
+  },
+  "trabajo-1": {
+    label: "Proyecto",
+    title: "Ciudad en pausa",
+    synopsis:
+      "Una campaña nocturna que observa el pulso urbano con precisión editorial.",
+    details:
+      "<p>Dirección visual centrada en textura, reflejos y ritmo lento. <strong>Placeholder:</strong> assets/proyecto-01.mp4</p>",
+  },
+  "trabajo-2": {
+    label: "Proyecto",
+    title: "Presencia discreta",
+    synopsis:
+      "Narrativa minimalista para destacar la presencia sin sobre-explicar.",
+    details:
+      "<p>Planos cerrados, respiración sonora y montaje limpio. <strong>Placeholder:</strong> assets/proyecto-02.mp4</p>",
+  },
+  "trabajo-3": {
+    label: "Proyecto",
+    title: "Luz editorial",
+    synopsis:
+      "Una pieza lifestyle donde la luz guía el relato y el gesto.",
+    details:
+      "<p>Foco en movimientos orgánicos y contrastes suaves. <strong>Placeholder:</strong> assets/proyecto-03.mp4</p>",
+  },
+  "trabajo-4": {
+    label: "Proyecto",
+    title: "Ritmo controlado",
+    synopsis:
+      "Automoción premium con tempo pausado y dirección precisa.",
+    details:
+      "<p>Dirección técnica para vehículos, detalles y texturas. <strong>Placeholder:</strong> assets/proyecto-04.mp4</p>",
   },
 };
 
@@ -58,7 +95,7 @@ menuLinks.forEach((link) => {
     event.preventDefault();
     const targetId = link.getAttribute("href");
     closeMenu();
-    smoothScrollTo(targetId, prefersReducedMotion ? 0 : 220);
+    smoothScrollTo(targetId, prefersReducedMotion ? 0 : 520);
   });
 });
 
@@ -68,7 +105,7 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
     const targetId = link.getAttribute("href");
     if (!targetId?.startsWith("#")) return;
     event.preventDefault();
-    const delay = menuOverlay?.classList.contains("is-open") && !prefersReducedMotion ? 220 : 0;
+    const delay = menuOverlay?.classList.contains("is-open") && !prefersReducedMotion ? 520 : 0;
     if (menuOverlay?.classList.contains("is-open")) {
       closeMenu();
     }
@@ -79,8 +116,14 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
 const openModal = (key) => {
   const data = modalContent[key];
   if (!data || !modal || !modalTitle || !modalSynopsis) return;
+  if (modalLabel) {
+    modalLabel.textContent = data.label ?? "Detalle";
+  }
   modalTitle.textContent = data.title;
   modalSynopsis.textContent = data.synopsis;
+  if (modalDetails) {
+    modalDetails.innerHTML = data.details ?? "";
+  }
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   body.style.overflow = "hidden";

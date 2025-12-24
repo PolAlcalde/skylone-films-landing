@@ -35,8 +35,7 @@
       <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
       <nav class="menu-overlay__links">
         <a href="#trabajos">Trabajos</a>
-        <a href="#enfoque">Enfoque</a>
-        <a href="#enfoque">Proceso</a>
+        <a href="#enfoque-proceso">Enfoque y proceso</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -44,16 +43,15 @@
 
   <main>
     <section class="hero" id="hero" data-theme="dark">
-      <!-- TODO: reemplazar la imagen poster por un fotograma real del video -->
-      <video class="hero__video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80">
+      <!-- TODO: reemplazar el video placeholder por assets/videotest.mp4 -->
+      <video class="hero__video" autoplay muted loop playsinline>
         <source src="assets/videotest.mp4" type="video/mp4" />
       </video>
       <div class="hero__top-gradient" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
         <h1>Skylone Films</h1>
-        <!-- TODO: actualizar texto principal del hero -->
-        <p class="hero__subtitle">Historias cinematográficas con ritmo editorial y sensibilidad urbana.</p>
+        <p class="hero__subtitle">Manifiesto visual para marcas que necesitan cine, precisión y una narrativa editorial que respire en cada plano.</p>
         <div class="hero__actions">
           <a class="button button--editorial" href="#trabajos" data-scroll>Ver trabajos</a>
           <button class="button button--ghost" type="button" data-modal="sobre">Sobre mí</button>
@@ -65,92 +63,94 @@
       <div class="section-inner">
         <div class="section-header reveal">
           <span class="section-label">Trabajo</span>
-          <!-- TODO: ajustar copy del bloque de trabajos -->
-          <h2>Tarjetas grandes, ritmo editorial.</h2>
+          <h2>Cuatro piezas, una narrativa cinematográfica.</h2>
         </div>
-        <!-- TODO: sustituir posters e imágenes placeholder por material real -->
         <div class="work__grid" data-work-grid>
-          <article class="work-card">
+          <article class="work-card" data-modal="trabajo-1">
             <div class="work-card__media">
-              <!-- TODO: reemplazar imagen editorial urbana por material real -->
-              <img class="work-card__image" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80" alt="Escena urbana editorial" />
+              <div class="work-card__placeholder" aria-hidden="true">
+                <span>Poster placeholder · assets/proyecto-01.jpg</span>
+              </div>
               <video class="work-card__video" muted loop playsinline preload="metadata">
+                <!-- TODO: reemplazar por assets/proyecto-01.mp4 -->
                 <source src="assets/videotest.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Campaña</p>
               <h3>Ciudad en pausa</h3>
-              <span class="work-card__cta">Ver vídeo</span>
-              <span class="work-card__arrow">→</span>
+              <div class="work-card__cta">
+                <span class="work-card__arrow">→</span>
+                <span class="work-card__cta-text">Ver video</span>
+              </div>
             </div>
           </article>
-          <article class="work-card">
+          <article class="work-card" data-modal="trabajo-2">
             <div class="work-card__media">
-              <!-- TODO: reemplazar imagen editorial automoción por material real -->
-              <img class="work-card__image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Automoción editorial nocturna" />
+              <div class="work-card__placeholder" aria-hidden="true">
+                <span>Poster placeholder · assets/proyecto-02.jpg</span>
+              </div>
               <video class="work-card__video" muted loop playsinline preload="metadata">
+                <!-- TODO: reemplazar por assets/proyecto-02.mp4 -->
                 <source src="assets/videotest.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Editorial</p>
               <h3>Presencia discreta</h3>
-              <span class="work-card__cta">Ver vídeo</span>
-              <span class="work-card__arrow">→</span>
+              <div class="work-card__cta">
+                <span class="work-card__arrow">→</span>
+                <span class="work-card__cta-text">Ver video</span>
+              </div>
             </div>
           </article>
-          <article class="work-card">
+          <article class="work-card" data-modal="trabajo-3">
             <div class="work-card__media">
-              <!-- TODO: reemplazar imagen editorial urbana por material real -->
-              <img class="work-card__image" src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80" alt="Calle iluminada con estilo editorial" />
+              <div class="work-card__placeholder" aria-hidden="true">
+                <span>Poster placeholder · assets/proyecto-03.jpg</span>
+              </div>
               <video class="work-card__video" muted loop playsinline preload="metadata">
+                <!-- TODO: reemplazar por assets/proyecto-03.mp4 -->
                 <source src="assets/videotest.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Lifestyle</p>
               <h3>Luz editorial</h3>
-              <span class="work-card__cta">Ver vídeo</span>
-              <span class="work-card__arrow">→</span>
+              <div class="work-card__cta">
+                <span class="work-card__arrow">→</span>
+                <span class="work-card__cta-text">Ver video</span>
+              </div>
             </div>
           </article>
-          <article class="work-card">
+          <article class="work-card" data-modal="trabajo-4">
             <div class="work-card__media">
-              <!-- TODO: reemplazar imagen editorial automoción por material real -->
-              <img class="work-card__image" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1600&q=80" alt="Detalle de automóvil premium" />
+              <div class="work-card__placeholder" aria-hidden="true">
+                <span>Poster placeholder · assets/proyecto-04.jpg</span>
+              </div>
               <video class="work-card__video" muted loop playsinline preload="metadata">
+                <!-- TODO: reemplazar por assets/proyecto-04.mp4 -->
                 <source src="assets/videotest.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Automoción</p>
               <h3>Ritmo controlado</h3>
-              <span class="work-card__cta">Ver vídeo</span>
-              <span class="work-card__arrow">→</span>
+              <div class="work-card__cta">
+                <span class="work-card__arrow">→</span>
+                <span class="work-card__cta-text">Ver video</span>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="about" id="quien" data-theme="light">
-      <div class="section-inner reveal">
-        <h2>Quién soy</h2>
-        <!-- TODO: actualizar la descripción personal -->
-        <p>
-          Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
-          Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
-        </p>
-      </div>
-    </section>
-
-    <section class="focus" id="enfoque" data-theme="light">
+    <section class="focus" id="enfoque-proceso" data-theme="light">
       <div class="section-inner">
         <div class="section-header reveal">
-          <span class="section-label">Enfoque</span>
-          <!-- TODO: ajustar título de enfoque -->
-          <h2>Dirección creativa con mirada premium.</h2>
+          <span class="section-label">Enfoque + Proceso</span>
+          <h2>Dirección creativa con ritmo premium y un proceso sin fricciones.</h2>
         </div>
         <div class="focus__blocks reveal">
           <article class="focus__block">
@@ -168,7 +168,6 @@
         </div>
         <div class="section-header focus__process-header reveal">
           <span class="section-label">Proceso</span>
-          <!-- TODO: ajustar título del proceso -->
           <h2>Del concepto al impacto.</h2>
         </div>
         <div class="process__steps reveal">
@@ -197,14 +196,16 @@
     </section>
 
     <section class="contact" id="contacto" data-theme="dark">
+      <div class="contact__backdrop" aria-hidden="true">
+        <span>Placeholder imagen · assets/hablemos.jpg</span>
+      </div>
       <div class="section-inner contact__inner reveal">
-        <!-- TODO: ajustar texto de contacto -->
         <h2>Hablemos de tu próxima campaña.</h2>
         <p>Agenda una conversación rápida y diseñemos algo memorable.</p>
         <div class="contact__actions">
           <!-- TODO: reemplazar mailto por el correo real -->
           <a class="button button--primary" href="mailto:hello@skylonefilms.com">Escríbeme</a>
-          <a class="button button--secondary" href="https://calendly.com/polalcalde/30min" target="_blank" rel="noopener">Agendar llamada gratis</a>
+          <a class="button button--secondary" href="https://calendly.com/polalcalde/30min" target="_blank" rel="noopener">Agendar llamada gratuita</a>
         </div>
       </div>
     </section>
@@ -221,9 +222,10 @@
       <div class="footer__column">
         <p class="footer__title">Redes Sociales</p>
         <div class="footer__socials">
-          <a href="#" aria-label="Instagram">◎</a>
-          <a href="#" aria-label="Vimeo">◎</a>
-          <a href="#" aria-label="LinkedIn">◎</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="TikTok">TT</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+          <a href="#" aria-label="YouTube">YT</a>
         </div>
       </div>
       <div class="footer__column">
@@ -238,10 +240,6 @@
     </div>
     <div class="footer__bottom">
       <span>© Skylone Films</span>
-      <div class="footer__small-links">
-        <a href="cookies.html">Cookies</a>
-        <a href="privacidad.html">Privacidad</a>
-      </div>
     </div>
   </footer>
 
@@ -250,21 +248,20 @@
     <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal__close" type="button" data-modal-close aria-label="Cerrar">×</button>
       <div class="modal__header">
-        <p class="modal__label">Sobre mí</p>
+        <p class="modal__label" id="modal-label">Sobre mí</p>
         <h3 id="modal-title">Sobre mí</h3>
-        <!-- TODO: actualizar el texto del modal "Sobre mí" -->
         <p class="modal__synopsis">
           Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
           Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
         </p>
       </div>
+      <div class="modal__details" id="modal-details"></div>
       <div class="modal__video">
-        <!-- TODO: reemplazar poster por un fotograma real -->
-        <video controls playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80">
+        <!-- TODO: reemplazar el video placeholder por assets/sobre-mi.mp4 -->
+        <video controls playsinline>
           <source src="assets/videotest.mp4" type="video/mp4" />
         </video>
       </div>
-      <!-- TODO: añadir texto y enlaces específicos del proyecto -->
     </div>
   </div>
 

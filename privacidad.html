@@ -9,46 +9,64 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-light legal-page">
+<body class="theme-dark legal-page">
   <header class="nav">
-    <a class="nav__menu" href="index.html">
+    <button class="nav__menu" type="button" data-menu-open>
       <span class="nav__icon" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>
       </span>
-      <span>Inicio</span>
-    </a>
+      <span>Menú</span>
+    </button>
     <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
     <div class="nav__actions">
-      <a class="button button--ghost nav__cta" href="mailto:hello@skylonefilms.com">Contacto</a>
+      <a class="button button--ghost nav__cta" href="index.html#contacto">HABLEMOS</a>
     </div>
   </header>
 
+  <div class="menu-overlay" aria-hidden="true" data-menu>
+    <div class="menu-overlay__backdrop" data-menu-close></div>
+    <div class="menu-overlay__panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
+      <nav class="menu-overlay__links">
+        <a href="index.html#trabajos">Trabajos</a>
+        <a href="index.html#enfoque-proceso">Enfoque y proceso</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
+
   <main>
     <section>
-      <div class="legal-content">
+      <div class="legal-panel legal-content">
         <h1>Política de privacidad</h1>
         <p>En Skylone Films tratamos tus datos personales de forma responsable y transparente, de acuerdo con la normativa vigente.</p>
 
         <h2>Responsable del tratamiento</h2>
-        <p>Skylone Films — <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a>.</p>
+        <p>Skylone Films (marca comercial), Barcelona, España — <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a>.</p>
 
         <h2>Finalidad</h2>
         <ul>
           <li>Atender consultas enviadas por correo.</li>
           <li>Gestionar solicitudes de presupuesto o colaboración.</li>
-          <li>Mejorar la experiencia del sitio con información agregada.</li>
+          <li>Mejorar la experiencia del sitio con información agregada cuando existan cookies analíticas aceptadas.</li>
         </ul>
 
         <h2>Legitimación</h2>
         <p>La base legal es el consentimiento del usuario y la ejecución de medidas precontractuales cuando solicita información.</p>
 
         <h2>Conservación</h2>
-        <p>Conservamos los datos durante el tiempo necesario para cumplir la finalidad o mientras exista obligación legal.</p>
+        <p>Conservamos los datos durante el tiempo necesario para cumplir la finalidad o mientras exista obligación legal. Las consultas se eliminan cuando dejan de ser necesarias.</p>
+
+        <h2>Destinatarios</h2>
+        <p>No cedemos tus datos a terceros, salvo obligación legal. Podemos utilizar proveedores técnicos para el mantenimiento del sitio bajo contratos de confidencialidad.</p>
 
         <h2>Derechos</h2>
-        <p>Puedes ejercer tus derechos de acceso, rectificación, supresión u oposición escribiendo a <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a>.</p>
+        <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a>.</p>
+
+        <h2>Reclamaciones</h2>
+        <p>Si consideras que tus derechos no han sido atendidos, puedes presentar una reclamación ante la Agencia Española de Protección de Datos.</p>
       </div>
     </section>
   </main>
@@ -56,11 +74,8 @@
   <footer class="footer">
     <div class="footer__bottom">
       <span>© Skylone Films</span>
-      <div class="footer__small-links">
-        <a href="cookies.html">Cookies</a>
-        <a href="privacidad.html">Privacidad</a>
-      </div>
     </div>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>

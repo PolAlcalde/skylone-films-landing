@@ -9,43 +9,61 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-light legal-page">
+<body class="theme-dark legal-page">
   <header class="nav">
-    <a class="nav__menu" href="index.html">
+    <button class="nav__menu" type="button" data-menu-open>
       <span class="nav__icon" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>
       </span>
-      <span>Inicio</span>
-    </a>
+      <span>Menú</span>
+    </button>
     <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
     <div class="nav__actions">
-      <a class="button button--ghost nav__cta" href="mailto:hello@skylonefilms.com">Contacto</a>
+      <a class="button button--ghost nav__cta" href="index.html#contacto">HABLEMOS</a>
     </div>
   </header>
 
+  <div class="menu-overlay" aria-hidden="true" data-menu>
+    <div class="menu-overlay__backdrop" data-menu-close></div>
+    <div class="menu-overlay__panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
+      <nav class="menu-overlay__links">
+        <a href="index.html#trabajos">Trabajos</a>
+        <a href="index.html#enfoque-proceso">Enfoque y proceso</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
+
   <main>
     <section>
-      <div class="legal-content">
+      <div class="legal-panel legal-content">
         <h1>Aviso legal</h1>
         <p>Este sitio web es propiedad de Skylone Films. El acceso y uso del sitio implica la aceptación de los términos aquí descritos.</p>
 
         <h2>Datos identificativos</h2>
         <ul>
-          <li><strong>Marca:</strong> Skylone Films</li>
+          <li><strong>Titular:</strong> Skylone Films (marca comercial)</li>
           <li><strong>Correo:</strong> <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a></li>
           <li><strong>Ubicación:</strong> Barcelona, España</li>
         </ul>
 
         <h2>Propiedad intelectual</h2>
-        <p>Todos los contenidos, textos, imágenes y vídeos son propiedad de Skylone Films o de terceros autorizados. Queda prohibida su reproducción sin autorización previa.</p>
+        <p>Todos los contenidos, textos, piezas audiovisuales, marcas y diseños son propiedad de Skylone Films o de terceros autorizados. Queda prohibida su reproducción sin autorización previa.</p>
 
         <h2>Responsabilidad</h2>
-        <p>Skylone Films no se responsabiliza del uso indebido del contenido publicado ni de los daños derivados de fallos técnicos.</p>
+        <p>Skylone Films no se responsabiliza del uso indebido del contenido publicado ni de los daños derivados de fallos técnicos o indisponibilidad temporal del sitio.</p>
+
+        <h2>Enlaces externos</h2>
+        <p>Este sitio puede contener enlaces a terceros. Skylone Films no se responsabiliza de los contenidos ni de las políticas de privacidad de dichos sitios.</p>
 
         <h2>Modificaciones</h2>
         <p>Nos reservamos el derecho a modificar este aviso legal en cualquier momento para adaptarlo a cambios legislativos o de negocio.</p>
+
+        <h2>Legislación aplicable</h2>
+        <p>Este aviso legal se rige por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales de Barcelona.</p>
       </div>
     </section>
   </main>
@@ -53,11 +71,8 @@
   <footer class="footer">
     <div class="footer__bottom">
       <span>© Skylone Films</span>
-      <div class="footer__small-links">
-        <a href="cookies.html">Cookies</a>
-        <a href="privacidad.html">Privacidad</a>
-      </div>
     </div>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>
