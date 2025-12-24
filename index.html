@@ -83,33 +83,33 @@
         <div class="que-hacemos__grid reveal" aria-label="Servicios principales">
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">◐</span>
-            <h3>Vídeos cinematográficos</h3>
-            <p>Dirección, rodaje y montaje con acabado editorial.</p>
+            <h3>Vídeos</h3>
+            <span class="que-hacemos__detail">Dirección y montaje.</span>
           </article>
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">◎</span>
             <h3>Fotografía</h3>
-            <p>Series visuales con estilo, textura y consistencia.</p>
+            <span class="que-hacemos__detail">Series editoriales.</span>
           </article>
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">▣</span>
-            <h3>Vídeos corporativos</h3>
-            <p>Narrativas claras para marcas con visión premium.</p>
+            <h3>Corporativos</h3>
+            <span class="que-hacemos__detail">Narrativa de marca.</span>
           </article>
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">▦</span>
             <h3>Entrevistas</h3>
-            <p>Conversaciones con atmósfera, ritmo y dirección cuidada.</p>
+            <span class="que-hacemos__detail">Ritmo humano.</span>
           </article>
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">✈</span>
             <h3>Drone</h3>
-            <p>Perspectiva aérea con precisión cinematográfica.</p>
+            <span class="que-hacemos__detail">Perspectiva aérea.</span>
           </article>
           <article class="que-hacemos__card">
             <span class="que-hacemos__icon" aria-hidden="true">◆</span>
-            <h3>Cortometrajes / piezas a medida</h3>
-            <p>Piezas únicas diseñadas para objetivos específicos.</p>
+            <h3>A medida</h3>
+            <span class="que-hacemos__detail">Piezas únicas.</span>
           </article>
         </div>
       </div>
@@ -126,7 +126,9 @@
             <div class="work-card__media">
               <!-- TODO: reemplazar por /assets/proyecto-01.jpg y /assets/proyecto-01.mp4 -->
               <div class="work-card__image work-card__image--one" aria-hidden="true"></div>
-              <div class="work-card__video-fake work-card__video-fake--one" aria-hidden="true"></div>
+              <video class="work-card__video" muted playsinline loop preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Campaña</p>
@@ -141,7 +143,9 @@
             <div class="work-card__media">
               <!-- TODO: reemplazar por /assets/proyecto-02.jpg y /assets/proyecto-02.mp4 -->
               <div class="work-card__image work-card__image--two" aria-hidden="true"></div>
-              <div class="work-card__video-fake work-card__video-fake--two" aria-hidden="true"></div>
+              <video class="work-card__video" muted playsinline loop preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Editorial</p>
@@ -156,7 +160,9 @@
             <div class="work-card__media">
               <!-- TODO: reemplazar por /assets/proyecto-03.jpg y /assets/proyecto-03.mp4 -->
               <div class="work-card__image work-card__image--three" aria-hidden="true"></div>
-              <div class="work-card__video-fake work-card__video-fake--three" aria-hidden="true"></div>
+              <video class="work-card__video" muted playsinline loop preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Lifestyle</p>
@@ -171,7 +177,9 @@
             <div class="work-card__media">
               <!-- TODO: reemplazar por /assets/proyecto-04.jpg y /assets/proyecto-04.mp4 -->
               <div class="work-card__image work-card__image--four" aria-hidden="true"></div>
-              <div class="work-card__video-fake work-card__video-fake--four" aria-hidden="true"></div>
+              <video class="work-card__video" muted playsinline loop preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Automoción</p>
@@ -300,7 +308,9 @@
       <div class="modal__details" id="modal-details"></div>
       <div class="modal__video">
         <!-- TODO: reemplazar el video demo por /assets/sobre-mi.mp4 -->
-        <div class="fake-video fake-video--modal" aria-hidden="true"></div>
+        <video class="modal__video-player" muted playsinline controls preload="metadata">
+          <source src="assets/videotest.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   </div>

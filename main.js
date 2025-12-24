@@ -14,6 +14,20 @@ const modalSynopsis = modal?.querySelector(".modal__synopsis");
 const modalDetails = modal?.querySelector("#modal-details");
 const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
 const modalVideo = modal?.querySelector(".modal__video");
+const modalVideoPlayer = modal?.querySelector(".modal__video-player");
+
+const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
+
+const lockBodyScroll = () => {
+  const scrollbarWidth = getScrollbarWidth();
+  body.style.overflow = "hidden";
+  body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : "";
+};
+
+const unlockBodyScroll = () => {
+  body.style.overflow = "";
+  body.style.paddingRight = "";
+};
 
 const setupHeroAutoplay = () => {
   if (!(heroVideo instanceof HTMLVideoElement)) return;
@@ -29,6 +43,8 @@ const setupHeroAutoplay = () => {
 
   const tryPlay = () => {
     heroVideo.muted = true;
+    heroVideo.autoplay = true;
+    heroVideo.loop = true;
     heroVideo.playsInline = true;
     const playAttempt = heroVideo.play();
     if (playAttempt && typeof playAttempt.catch === "function") {
@@ -48,6 +64,9 @@ const setupHeroAutoplay = () => {
     tryPlay();
   };
 
+  const handleReady = () => tryPlay();
+  heroVideo.addEventListener("loadedmetadata", handleReady, { once: true });
+  heroVideo.addEventListener("canplay", handleReady, { once: true });
   tryPlay();
 };
 
@@ -100,7 +119,7 @@ const openMenu = () => {
   if (!menuOverlay) return;
   menuOverlay.classList.add("is-open");
   menuOverlay.setAttribute("aria-hidden", "false");
-  body.style.overflow = "hidden";
+  lockBodyScroll();
   body.classList.add("menu-open");
 };
 
@@ -108,7 +127,7 @@ const closeMenu = () => {
   if (!menuOverlay) return;
   menuOverlay.classList.remove("is-open");
   menuOverlay.setAttribute("aria-hidden", "true");
-  body.style.overflow = "";
+  unlockBodyScroll();
   body.classList.remove("menu-open");
 };
 
@@ -163,14 +182,9 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
 let lastModalTrigger = null;
 
 const setModalVideo = () => {
-  if (!modalVideo) return;
-  const video = document.createElement("video");
-  video.src = "assets/videotest.mp4";
-  video.setAttribute("playsinline", "true");
-  video.setAttribute("controls", "true");
-  video.preload = "metadata";
-  modalVideo.innerHTML = "";
-  modalVideo.appendChild(video);
+  if (!modalVideoPlayer) return;
+  modalVideoPlayer.src = "assets/videotest.mp4";
+  modalVideoPlayer.load();
 };
 
 const focusModalClose = () => {
@@ -194,7 +208,7 @@ const openModal = (key) => {
   setModalVideo();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  body.style.overflow = "hidden";
+  lockBodyScroll();
   focusModalClose();
 };
 
@@ -217,20 +231,19 @@ const openProjectModal = (card) => {
   setModalVideo();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  body.style.overflow = "hidden";
+  lockBodyScroll();
   focusModalClose();
 };
 
 const closeModal = () => {
   if (!modal) return;
-  const video = modalVideo?.querySelector("video");
-  if (video) {
-    video.pause();
-    video.currentTime = 0;
+  if (modalVideoPlayer) {
+    modalVideoPlayer.pause();
+    modalVideoPlayer.currentTime = 0;
   }
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
-  body.style.overflow = "";
+  unlockBodyScroll();
   if (lastModalTrigger instanceof HTMLElement) {
     lastModalTrigger.focus();
   }
@@ -354,12 +367,24 @@ if (prefersReducedMotion) {
 const workCards = document.querySelectorAll(".work-card");
 
 workCards.forEach((card) => {
+  const video = card.querySelector(".work-card__video");
   const handleEnter = () => {
     card.classList.add("is-hovered");
+    if (video instanceof HTMLVideoElement) {
+      video.currentTime = 0;
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(() => {});
+      }
+    }
   };
 
   const handleLeave = () => {
     card.classList.remove("is-hovered");
+    if (video instanceof HTMLVideoElement) {
+      video.pause();
+      video.currentTime = 0;
+    }
   };
 
   card.addEventListener("pointerenter", handleEnter);
