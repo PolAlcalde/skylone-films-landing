@@ -12,6 +12,7 @@ const modalLabel = modal?.querySelector("#modal-label");
 const modalSynopsis = modal?.querySelector(".modal__synopsis");
 const modalDetails = modal?.querySelector("#modal-details");
 const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
+const modalVideo = modal?.querySelector(".modal__video");
 
 const modalContent = {
   sobre: {
@@ -88,6 +89,12 @@ const smoothScrollTo = (targetId, closeDelay = 0) => {
   }, closeDelay);
 };
 
+const clearFocus = (element) => {
+  if (element instanceof HTMLElement) {
+    element.blur();
+  }
+};
+
 menuLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     if (!link.getAttribute("href")?.startsWith("#")) return;
@@ -95,6 +102,7 @@ menuLinks.forEach((link) => {
     const targetId = link.getAttribute("href");
     closeMenu();
     smoothScrollTo(targetId, prefersReducedMotion ? 0 : 520);
+    clearFocus(link);
   });
 });
 
@@ -109,8 +117,29 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
       closeMenu();
     }
     smoothScrollTo(targetId, delay);
+    clearFocus(link);
   });
 });
+
+let lastModalTrigger = null;
+
+const setModalVideo = () => {
+  if (!modalVideo) return;
+  const video = document.createElement("video");
+  video.src = "assets/videotest.mp4";
+  video.setAttribute("playsinline", "true");
+  video.setAttribute("controls", "true");
+  video.preload = "metadata";
+  modalVideo.innerHTML = "";
+  modalVideo.appendChild(video);
+};
+
+const focusModalClose = () => {
+  const closeButton = modal?.querySelector("[data-modal-close]");
+  if (closeButton instanceof HTMLElement) {
+    closeButton.focus();
+  }
+};
 
 const openModal = (key) => {
   const data = modalContent[key];
@@ -123,21 +152,60 @@ const openModal = (key) => {
   if (modalDetails) {
     modalDetails.innerHTML = data.details ?? "";
   }
+  setModalVideo();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   body.style.overflow = "hidden";
+  focusModalClose();
+};
+
+const openProjectModal = (card) => {
+  if (!modal || !modalTitle || !modalSynopsis) return;
+  const title =
+    card.dataset.title?.trim() ||
+    card.querySelector("h3")?.textContent?.trim() ||
+    "Proyecto";
+  if (modalLabel) {
+    modalLabel.textContent = "Proyecto";
+  }
+  modalTitle.textContent = title;
+  modalSynopsis.textContent =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae euismod arcu, vitae viverra nisl.";
+  if (modalDetails) {
+    modalDetails.innerHTML =
+      "<p><strong>Tags:</strong> Marca / Editorial / Urbano</p>";
+  }
+  setModalVideo();
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  body.style.overflow = "hidden";
+  focusModalClose();
 };
 
 const closeModal = () => {
   if (!modal) return;
+  const video = modalVideo?.querySelector("video");
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
   body.style.overflow = "";
+  if (lastModalTrigger instanceof HTMLElement) {
+    lastModalTrigger.focus();
+  }
+  lastModalTrigger = null;
 };
 
 const modalTriggers = document.querySelectorAll("[data-modal]");
 modalTriggers.forEach((trigger) => {
   trigger.addEventListener("click", () => {
+    lastModalTrigger = trigger;
+    if (trigger.classList.contains("work-card")) {
+      openProjectModal(trigger);
+      return;
+    }
     openModal(trigger.dataset.modal);
   });
 
@@ -166,38 +234,52 @@ window.addEventListener("keydown", (event) => {
       closeMenu();
     }
   }
+  if (event.key === "Tab" && modal?.classList.contains("is-open")) {
+    const focusable = modal.querySelectorAll(
+      "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 });
 
-const applyBackground = (mode, { immediate = false } = {}) => {
-  if (immediate) {
+const workSection = document.querySelector(".work");
+
+const setWorkTheme = (isActive) => {
+  const useNoTransition = prefersReducedMotion || !isActive;
+  if (useNoTransition) {
     body.classList.add("no-transition");
   }
-  body.classList.remove("bg-hero", "bg-works-dark", "bg-light", "bg-focus-dark");
-  body.classList.add(mode);
-  if (immediate) {
+  body.classList.toggle("theme-work-light", isActive);
+  if (useNoTransition) {
     requestAnimationFrame(() => {
       body.classList.remove("no-transition");
     });
   }
 };
 
-const workSection = document.querySelector(".work");
-const focusSection = document.querySelector(".focus");
-const exitWorksTrigger = document.querySelector("[data-exit-works]");
-
-if (workSection) {
-  const workObserver = new IntersectionObserver(
+const workThemeSection = document.querySelector("#trabajos");
+if (workThemeSection) {
+  const workThemeObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          applyBackground("bg-works-dark");
-        }
+        setWorkTheme(entry.isIntersecting);
       });
     },
     { threshold: 0.35 }
   );
-  workObserver.observe(workSection);
+  workThemeObserver.observe(workThemeSection);
+}
 
+if (workSection) {
   const workCardObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -210,34 +292,6 @@ if (workSection) {
     { threshold: 0.35 }
   );
   workCardObserver.observe(workSection);
-}
-
-if (exitWorksTrigger) {
-  const exitObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          applyBackground("bg-light");
-        }
-      });
-    },
-    { threshold: 0.6 }
-  );
-  exitObserver.observe(exitWorksTrigger);
-}
-
-if (focusSection) {
-  const focusObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          applyBackground("bg-focus-dark", { immediate: true });
-        }
-      });
-    },
-    { threshold: 0.35 }
-  );
-  focusObserver.observe(focusSection);
 }
 
 const revealElements = document.querySelectorAll(".reveal");
@@ -274,6 +328,20 @@ workCards.forEach((card) => {
   card.addEventListener("focusin", handleEnter);
   card.addEventListener("focusout", handleLeave);
 });
+
+const whatWeDoPanels = document.querySelectorAll(
+  "[data-what-we-do-panel], [data-que-hacemos-panel], .what-we-do__panel, .que-hacemos__panel"
+);
+const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+if (!supportsHover && whatWeDoPanels.length) {
+  whatWeDoPanels.forEach((panel) => {
+    panel.addEventListener("click", () => {
+      whatWeDoPanels.forEach((item) => item.classList.remove("is-active"));
+      panel.classList.add("is-active");
+    });
+  });
+}
 
 const cookieBanner = document.querySelector("[data-cookie-banner]");
 const cookieModal = document.querySelector("[data-cookie-modal]");
