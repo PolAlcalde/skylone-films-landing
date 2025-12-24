@@ -5,6 +5,7 @@ const menuOverlay = document.querySelector("[data-menu]");
 const menuOpenButton = document.querySelector("[data-menu-open]");
 const menuCloseButtons = document.querySelectorAll("[data-menu-close]");
 const menuLinks = menuOverlay?.querySelectorAll("a") ?? [];
+const heroVideo = document.querySelector("[data-hero-video]");
 
 const modal = document.getElementById("modal");
 const modalTitle = modal?.querySelector("#modal-title");
@@ -13,6 +14,44 @@ const modalSynopsis = modal?.querySelector(".modal__synopsis");
 const modalDetails = modal?.querySelector("#modal-details");
 const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
 const modalVideo = modal?.querySelector(".modal__video");
+
+const setupHeroAutoplay = () => {
+  if (!(heroVideo instanceof HTMLVideoElement)) return;
+
+  let triedGesture = false;
+  const gestureEvents = ["click", "touchstart", "scroll", "keydown"];
+
+  const removeGestureListeners = () => {
+    gestureEvents.forEach((eventName) => {
+      window.removeEventListener(eventName, handleGesture);
+    });
+  };
+
+  const tryPlay = () => {
+    heroVideo.muted = true;
+    heroVideo.playsInline = true;
+    const playAttempt = heroVideo.play();
+    if (playAttempt && typeof playAttempt.catch === "function") {
+      playAttempt.catch(() => {
+        if (!triedGesture) {
+          triedGesture = true;
+          gestureEvents.forEach((eventName) => {
+            window.addEventListener(eventName, handleGesture, { passive: true });
+          });
+        }
+      });
+    }
+  };
+
+  const handleGesture = () => {
+    removeGestureListeners();
+    tryPlay();
+  };
+
+  tryPlay();
+};
+
+setupHeroAutoplay();
 
 const modalContent = {
   sobre: {
