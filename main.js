@@ -1,130 +1,83 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-const heroPanel = document.querySelector(".hero__panel");
-const sections = document.querySelectorAll(".section-reveal");
-const processLine = document.querySelector(".process__line");
-const spotlight = document.querySelector(".hero__spotlight");
+const revealItems = document.querySelectorAll(".reveal");
 
 const modal = document.getElementById("modal");
 const modalTitle = modal.querySelector("#modal-title");
 const modalSynopsis = modal.querySelector(".modal__synopsis");
+const modalVideo = modal.querySelector("video");
 const modalCloseButtons = modal.querySelectorAll("[data-modal-close]");
 
 const modalContent = {
-  "modal-urban": {
-    title: "Urban Pulse",
-    synopsis: "A night portrait of movement and quiet in the city core.",
+  reel: {
+    title: "Reel Skylone",
+    synopsis: "Un recorrido breve por la estética y el ritmo de Skylone Films.",
   },
-  "modal-brand": {
-    title: "Quiet Brand Story",
-    synopsis: "A brand film built on restraint, light, and honest rhythm.",
+  urbano: {
+    title: "Ritmo de ciudad",
+    synopsis: "Un retrato contenido de movimiento urbano y pausa emocional.",
   },
-  "modal-introspective": {
-    title: "Inner Lines",
-    synopsis: "Introspective frames that track breath, balance, and release.",
+  marca: {
+    title: "Presencia de marca",
+    synopsis: "Una pieza sobria con foco en detalle, textura y claridad.",
   },
-  "modal-night": {
-    title: "Night Study",
-    synopsis: "A study of contrast, glow, and the tension between silence and sound.",
+  nocturno: {
+    title: "Luz en silencio",
+    synopsis: "Exploración nocturna con contrastes suaves y ritmo sereno.",
   },
-  "modal-motion": {
-    title: "Motion & Light",
-    synopsis: "Slow motion and precise lighting for a meditative pace.",
+  introspectivo: {
+    title: "Dentro de la calma",
+    synopsis: "Narrativa interna donde cada plano respira.",
   },
-  "modal-quiet": {
-    title: "Quiet Power",
-    synopsis: "A grounded portrait of presence under pressure.",
+  movimiento: {
+    title: "Flujo natural",
+    synopsis: "Movimiento preciso y una cadencia que sostiene la emoción.",
+  },
+  silencio: {
+    title: "Fuerza quieta",
+    synopsis: "Presencia silenciosa, tensión controlada y composición limpia.",
   },
 };
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        const delay = prefersReducedMotion ? 0 : index * 120;
-        entry.target.style.transitionDelay = `${delay}ms`;
-        entry.target.classList.add("is-visible");
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
-
-sections.forEach((section) => revealObserver.observe(section));
-
-if (processLine) {
-  const processObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          processLine.classList.add("is-visible");
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-  processObserver.observe(processLine);
-}
-
-window.addEventListener("load", () => {
-  if (heroPanel) {
-    heroPanel.classList.add("is-visible");
+const openModal = (key) => {
+  const data = modalContent[key];
+  if (!data) return;
+  modalTitle.textContent = data.title;
+  modalSynopsis.textContent = data.synopsis;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  if (modalVideo) {
+    modalVideo.currentTime = 0;
+    modalVideo.play().catch(() => {});
   }
-});
-
-if (!prefersReducedMotion) {
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    document.documentElement.style.setProperty("--parallax-y", `${scrollTop * 0.08}px`);
-    const grid = document.querySelector(".page-grid");
-    if (grid) {
-      grid.style.transform = `translateY(${scrollTop * 0.03}px)`;
-    }
-  });
-}
-
-if (spotlight && !prefersReducedMotion) {
-  document.addEventListener("mousemove", (event) => {
-    const x = (event.clientX / window.innerWidth) * 100;
-    const y = (event.clientY / window.innerHeight) * 100;
-    document.documentElement.style.setProperty("--spot-x", `${x}%`);
-    document.documentElement.style.setProperty("--spot-y", `${y}%`);
-    spotlight.style.setProperty("--spot-x", `${x}%`);
-    spotlight.style.setProperty("--spot-y", `${y}%`);
-  });
-}
-
-const workCards = document.querySelectorAll(".work-card");
-workCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const key = card.dataset.modal;
-    const data = modalContent[key];
-    if (!data) return;
-    modalTitle.textContent = data.title;
-    modalSynopsis.textContent = data.synopsis;
-    modal.classList.add("is-open");
-    modalContentElementFocus();
-  });
-
-  card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      card.click();
-    }
-  });
-
-  card.setAttribute("tabindex", "0");
-  card.setAttribute("role", "button");
-});
+};
 
 const closeModal = () => {
   modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  if (modalVideo) {
+    modalVideo.pause();
+  }
 };
 
-const modalContentElementFocus = () => {
-  const closeButton = modal.querySelector(".modal__close");
-  if (closeButton) closeButton.focus();
-};
+const modalTriggers = document.querySelectorAll("[data-modal]");
+modalTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    openModal(trigger.dataset.modal);
+  });
+
+  if (trigger.tagName === "ARTICLE") {
+    trigger.setAttribute("tabindex", "0");
+    trigger.setAttribute("role", "button");
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        trigger.click();
+      }
+    });
+  }
+});
 
 modalCloseButtons.forEach((button) => {
   button.addEventListener("click", closeModal);
@@ -136,20 +89,19 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-const accordion = document.querySelector(".accordion");
-if (accordion) {
-  const trigger = accordion.querySelector(".accordion__trigger");
-  const content = accordion.querySelector(".accordion__content");
-  trigger.addEventListener("click", () => {
-    const isOpen = accordion.classList.toggle("is-open");
-    trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    content.style.maxHeight = isOpen ? `${content.scrollHeight}px` : "0px";
-  });
-}
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
 
-window.addEventListener("resize", () => {
-  if (accordion && accordion.classList.contains("is-open")) {
-    const content = accordion.querySelector(".accordion__content");
-    content.style.maxHeight = `${content.scrollHeight}px`;
-  }
-});
+revealItems.forEach((item) => revealObserver.observe(item));
+
+if (prefersReducedMotion) {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
