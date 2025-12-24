@@ -43,7 +43,7 @@
   </div>
 
   <main>
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" data-theme="dark">
       <!-- TODO: reemplazar la imagen poster por un fotograma real del video -->
       <video class="hero__video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80">
         <source src="assets/videotest.mp4" type="video/mp4" />
@@ -81,6 +81,7 @@
             <div class="work-card__info">
               <p class="work-card__category">Campaña</p>
               <h3>Ciudad en pausa</h3>
+              <span class="work-card__cta">Ver vídeo</span>
               <span class="work-card__arrow">→</span>
             </div>
           </article>
@@ -95,6 +96,7 @@
             <div class="work-card__info">
               <p class="work-card__category">Editorial</p>
               <h3>Presencia discreta</h3>
+              <span class="work-card__cta">Ver vídeo</span>
               <span class="work-card__arrow">→</span>
             </div>
           </article>
@@ -109,6 +111,7 @@
             <div class="work-card__info">
               <p class="work-card__category">Lifestyle</p>
               <h3>Luz editorial</h3>
+              <span class="work-card__cta">Ver vídeo</span>
               <span class="work-card__arrow">→</span>
             </div>
           </article>
@@ -123,6 +126,7 @@
             <div class="work-card__info">
               <p class="work-card__category">Automoción</p>
               <h3>Ritmo controlado</h3>
+              <span class="work-card__cta">Ver vídeo</span>
               <span class="work-card__arrow">→</span>
             </div>
           </article>
@@ -130,7 +134,7 @@
       </div>
     </section>
 
-    <section class="about" id="quien">
+    <section class="about" id="quien" data-theme="light">
       <div class="section-inner reveal">
         <h2>Quién soy</h2>
         <!-- TODO: actualizar la descripción personal -->
@@ -141,7 +145,7 @@
       </div>
     </section>
 
-    <section class="focus" id="enfoque">
+    <section class="focus" id="enfoque" data-theme="light">
       <div class="section-inner">
         <div class="section-header reveal">
           <span class="section-label">Enfoque</span>
@@ -192,7 +196,7 @@
       </div>
     </section>
 
-    <section class="contact" id="contacto">
+    <section class="contact" id="contacto" data-theme="dark">
       <div class="section-inner contact__inner reveal">
         <!-- TODO: ajustar texto de contacto -->
         <h2>Hablemos de tu próxima campaña.</h2>
@@ -225,18 +229,18 @@
       <div class="footer__column">
         <p class="footer__title">Legal</p>
         <div class="footer__links">
-          <a href="#">Cookies</a>
-          <a href="#">Aviso legal</a>
-          <a href="#">Política de privacidad</a>
-          <a href="#">Accesibilidad</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="privacidad.html">Política de privacidad</a>
+          <a href="accesibilidad.html">Accesibilidad</a>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
       <span>© Skylone Films</span>
       <div class="footer__small-links">
-        <a href="#">Cookies</a>
-        <a href="#">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="privacidad.html">Privacidad</a>
       </div>
     </div>
   </footer>
@@ -268,7 +272,7 @@
     <div class="cookie-banner__content">
       <p class="cookie-banner__title">Cookies</p>
       <!-- TODO: actualizar copy del banner de cookies -->
-      <p class="cookie-banner__text">Usamos cookies necesarias para el funcionamiento y otras opcionales para mejorar la experiencia.</p>
+      <p class="cookie-banner__text">Usamos cookies necesarias para el funcionamiento y otras opcionales para mejorar la experiencia. Consulta la <a href="cookies.html">política de cookies</a>.</p>
     </div>
     <div class="cookie-banner__actions">
       <button class="button button--primary" type="button" data-cookie-accept>Aceptar todo</button>
