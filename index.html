@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-dark">
+<body class="bg-hero">
   <header class="nav">
     <button class="nav__menu" type="button" data-menu-open>
       <span class="nav__icon" aria-hidden="true">
@@ -42,11 +42,11 @@
   </div>
 
   <main>
-    <section class="hero" id="hero" data-theme="dark">
-      <!-- TODO: reemplazar el video placeholder por assets/videotest.mp4 -->
-      <video class="hero__video" autoplay muted loop playsinline>
-        <source src="assets/videotest.mp4" type="video/mp4" />
-      </video>
+    <section class="hero" id="hero">
+      <div class="hero__media" aria-hidden="true">
+        <!-- TODO: reemplazar el video demo por /assets/hero.mp4 -->
+        <div class="fake-video fake-video--hero"></div>
+      </div>
       <div class="hero__top-gradient" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
@@ -59,7 +59,7 @@
       </div>
     </section>
 
-    <section class="work" id="trabajos" data-theme="dark">
+    <section class="work" id="trabajos">
       <div class="section-inner">
         <div class="section-header reveal">
           <span class="section-label">Trabajo</span>
@@ -68,13 +68,9 @@
         <div class="work__grid" data-work-grid>
           <article class="work-card" data-modal="trabajo-1">
             <div class="work-card__media">
-              <div class="work-card__placeholder" aria-hidden="true">
-                <span>Poster placeholder · assets/proyecto-01.jpg</span>
-              </div>
-              <video class="work-card__video" muted loop playsinline preload="metadata">
-                <!-- TODO: reemplazar por assets/proyecto-01.mp4 -->
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
+              <!-- TODO: reemplazar por /assets/proyecto-01.jpg y /assets/proyecto-01.mp4 -->
+              <div class="work-card__image work-card__image--one" aria-hidden="true"></div>
+              <div class="work-card__video-fake work-card__video-fake--one" aria-hidden="true"></div>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Campaña</p>
@@ -87,13 +83,9 @@
           </article>
           <article class="work-card" data-modal="trabajo-2">
             <div class="work-card__media">
-              <div class="work-card__placeholder" aria-hidden="true">
-                <span>Poster placeholder · assets/proyecto-02.jpg</span>
-              </div>
-              <video class="work-card__video" muted loop playsinline preload="metadata">
-                <!-- TODO: reemplazar por assets/proyecto-02.mp4 -->
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
+              <!-- TODO: reemplazar por /assets/proyecto-02.jpg y /assets/proyecto-02.mp4 -->
+              <div class="work-card__image work-card__image--two" aria-hidden="true"></div>
+              <div class="work-card__video-fake work-card__video-fake--two" aria-hidden="true"></div>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Editorial</p>
@@ -106,13 +98,9 @@
           </article>
           <article class="work-card" data-modal="trabajo-3">
             <div class="work-card__media">
-              <div class="work-card__placeholder" aria-hidden="true">
-                <span>Poster placeholder · assets/proyecto-03.jpg</span>
-              </div>
-              <video class="work-card__video" muted loop playsinline preload="metadata">
-                <!-- TODO: reemplazar por assets/proyecto-03.mp4 -->
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
+              <!-- TODO: reemplazar por /assets/proyecto-03.jpg y /assets/proyecto-03.mp4 -->
+              <div class="work-card__image work-card__image--three" aria-hidden="true"></div>
+              <div class="work-card__video-fake work-card__video-fake--three" aria-hidden="true"></div>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Lifestyle</p>
@@ -125,13 +113,9 @@
           </article>
           <article class="work-card" data-modal="trabajo-4">
             <div class="work-card__media">
-              <div class="work-card__placeholder" aria-hidden="true">
-                <span>Poster placeholder · assets/proyecto-04.jpg</span>
-              </div>
-              <video class="work-card__video" muted loop playsinline preload="metadata">
-                <!-- TODO: reemplazar por assets/proyecto-04.mp4 -->
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
+              <!-- TODO: reemplazar por /assets/proyecto-04.jpg y /assets/proyecto-04.mp4 -->
+              <div class="work-card__image work-card__image--four" aria-hidden="true"></div>
+              <div class="work-card__video-fake work-card__video-fake--four" aria-hidden="true"></div>
             </div>
             <div class="work-card__info">
               <p class="work-card__category">Automoción</p>
@@ -146,7 +130,9 @@
       </div>
     </section>
 
-    <section class="focus" id="enfoque-proceso" data-theme="light">
+    <div class="scroll-sentinel" data-exit-works aria-hidden="true"></div>
+
+    <section class="focus" id="enfoque-proceso">
       <div class="section-inner">
         <div class="section-header reveal">
           <span class="section-label">Enfoque + Proceso</span>
@@ -195,9 +181,9 @@
       </div>
     </section>
 
-    <section class="contact" id="contacto" data-theme="dark">
+    <section class="contact" id="contacto">
       <div class="contact__backdrop" aria-hidden="true">
-        <span>Placeholder imagen · assets/hablemos.jpg</span>
+        <!-- TODO: reemplazar imagen demo por /assets/contacto.jpg -->
       </div>
       <div class="section-inner contact__inner reveal">
         <h2>Hablemos de tu próxima campaña.</h2>
@@ -257,10 +243,8 @@
       </div>
       <div class="modal__details" id="modal-details"></div>
       <div class="modal__video">
-        <!-- TODO: reemplazar el video placeholder por assets/sobre-mi.mp4 -->
-        <video controls playsinline>
-          <source src="assets/videotest.mp4" type="video/mp4" />
-        </video>
+        <!-- TODO: reemplazar el video demo por /assets/sobre-mi.mp4 -->
+        <div class="fake-video fake-video--modal" aria-hidden="true"></div>
       </div>
     </div>
   </div>
