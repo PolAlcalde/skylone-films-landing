@@ -3,177 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skylone Films — Portafolio Cinematográfico</title>
+  <title>Skylone Films — Editorial Premium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="theme-light">
   <header class="nav">
-    <div class="nav__logo" aria-label="Skylone Films">
-      <span class="logo-mark">SF</span>
-      <span class="logo-text">Skylone Films</span>
+    <button class="nav__menu" type="button" data-menu-open>
+      <span class="nav__icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span>Menú</span>
+    </button>
+
+    <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
+
+    <div class="nav__actions">
+      <button class="nav__user" type="button" aria-label="Perfil">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-4.42 0-8 2-8 4v2h16v-2c0-2-3.58-4-8-4Z" />
+        </svg>
+      </button>
+      <a class="button button--ghost nav__cta" href="#contacto">
+        <span>HABLEMOS</span>
+      </a>
     </div>
-    <nav class="nav__links">
-      <a href="#trabajo">Trabajo</a>
-      <a href="#enfoque">Enfoque</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-    <a class="button button--ghost" href="#contacto">Hablemos</a>
   </header>
+
+  <div class="menu-overlay" aria-hidden="true" data-menu>
+    <div class="menu-overlay__backdrop" data-menu-close></div>
+    <div class="menu-overlay__panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
+      <nav class="menu-overlay__links">
+        <a href="#trabajo">Trabajo</a>
+        <a href="#enfoque">Enfoque</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
 
   <main>
     <section class="hero" id="hero">
-      <video class="hero__video" autoplay muted loop playsinline poster="">
-        <source src="assets/reel.mp4" type="video/mp4" />
+      <!-- TODO: reemplazar la imagen poster por un fotograma real del video -->
+      <video class="hero__video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80">
+        <source src="assets/videotest.mp4" type="video/mp4" />
       </video>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
-        <p class="hero__eyebrow">Cine urbano · calma · intención</p>
+        <p class="hero__eyebrow">Editorial premium · cine urbano</p>
         <h1>Skylone Films</h1>
         <p class="hero__subtitle">
-          Cine urbano y emocional, con intención y calma.
-          Historias que respiran y permanecen.
+          Historias cinematográficas con ritmo editorial y sensibilidad urbana.
+          Imágenes que se sienten y permanecen.
         </p>
         <div class="hero__actions">
           <button class="button button--primary" type="button" data-modal="reel">Ver reel</button>
           <a class="button button--secondary" href="#trabajo">Explorar trabajo</a>
         </div>
-        <p class="hero__signature">Where moments become stories.</p>
+        <p class="hero__signature">Calma, dirección y intención.</p>
       </div>
     </section>
 
-    <section class="about reveal" id="quien">
+    <section class="about" id="quien">
       <div class="section-inner">
         <h2>Quién soy</h2>
         <p>
-          Soy filmmaker con una mirada contenida y honesta. Trabajo desde la disciplina,
-          la coherencia visual y el crecimiento personal. Busco calma en cada rodaje,
-          claridad en la narrativa y un ritmo que permita sentir. Menos ruido, más intención.
+          Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
+          Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
         </p>
       </div>
     </section>
 
-    <section class="work reveal" id="trabajo">
+    <section class="transition" id="transicion" data-theme="dark">
+      <div class="section-inner">
+        <div class="transition__header">
+          <span class="section-label">El viaje comienza</span>
+          <h2>Tu campaña se siente antes de verla.</h2>
+          <p>Entramos en un universo más profundo, donde el silencio es protagonista.</p>
+        </div>
+        <div class="transition__cards">
+          <!-- TODO: reemplazar fondos placeholder por imágenes editoriales reales -->
+          <article class="transition-card">
+            <div class="transition-card__media" aria-hidden="true"></div>
+            <div class="transition-card__content">
+              <p class="transition-card__label">Dirección creativa</p>
+              <h3>Editorial nocturno</h3>
+            </div>
+          </article>
+          <article class="transition-card">
+            <div class="transition-card__media" aria-hidden="true"></div>
+            <div class="transition-card__content">
+              <p class="transition-card__label">Producción</p>
+              <h3>Ritmo metropolitano</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="trabajo">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-label">Trabajo</span>
-          <h2>Series visuales con carácter editorial.</h2>
+          <h2>Tarjetas grandes, ritmo editorial.</h2>
         </div>
-        <div class="work__grid">
+        <!-- TODO: sustituir posters e imágenes placeholder por material real -->
+        <div class="work__grid" data-work-grid>
           <article class="work-card" data-modal="urbano">
-            <div class="work-card__thumb"></div>
+            <div class="work-card__media">
+              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+              <span class="work-card__chip">Urbano</span>
+            </div>
             <div class="work-card__info">
-              <span class="work-card__tag">Urbano</span>
-              <h3>Ritmo de ciudad</h3>
-              <p>Movimiento contenido, respiración visual.</p>
+              <p class="work-card__category">Campaña</p>
+              <h3>Ciudad en pausa</h3>
+              <span class="work-card__arrow">→</span>
             </div>
           </article>
           <article class="work-card" data-modal="marca">
-            <div class="work-card__thumb"></div>
+            <div class="work-card__media">
+              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+              <span class="work-card__chip">Marca</span>
+            </div>
             <div class="work-card__info">
-              <span class="work-card__tag">Marca</span>
-              <h3>Presencia de marca</h3>
-              <p>Imagen sobria, intención clara.</p>
+              <p class="work-card__category">Editorial</p>
+              <h3>Presencia discreta</h3>
+              <span class="work-card__arrow">→</span>
             </div>
           </article>
           <article class="work-card" data-modal="nocturno">
-            <div class="work-card__thumb"></div>
-            <div class="work-card__info">
-              <span class="work-card__tag">Nocturno</span>
-              <h3>Luz en silencio</h3>
-              <p>Contrastes suaves, energía quieta.</p>
+            <div class="work-card__media">
+              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+              <span class="work-card__chip">Nocturno</span>
             </div>
-          </article>
-          <article class="work-card" data-modal="introspectivo">
-            <div class="work-card__thumb"></div>
             <div class="work-card__info">
-              <span class="work-card__tag">Introspectivo</span>
-              <h3>Dentro de la calma</h3>
-              <p>Mirada interna, pausa precisa.</p>
+              <p class="work-card__category">Lifestyle</p>
+              <h3>Luz editorial</h3>
+              <span class="work-card__arrow">→</span>
             </div>
           </article>
           <article class="work-card" data-modal="movimiento">
-            <div class="work-card__thumb"></div>
-            <div class="work-card__info">
-              <span class="work-card__tag">Movimiento</span>
-              <h3>Flujo natural</h3>
-              <p>Ritmo constante, emoción limpia.</p>
+            <div class="work-card__media">
+              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+              <span class="work-card__chip">Movimiento</span>
             </div>
-          </article>
-          <article class="work-card" data-modal="silencio">
-            <div class="work-card__thumb"></div>
             <div class="work-card__info">
-              <span class="work-card__tag">Silencio</span>
-              <h3>Fuerza quieta</h3>
-              <p>Presencia sin ruido, foco total.</p>
+              <p class="work-card__category">Automoción</p>
+              <h3>Ritmo controlado</h3>
+              <span class="work-card__arrow">→</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="focus reveal" id="enfoque">
+    <section class="focus" id="enfoque">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-label">Enfoque</span>
-          <h2>Desarrollo personal aplicado al cine.</h2>
+          <h2>Dirección creativa con mirada premium.</h2>
         </div>
         <div class="focus__blocks">
           <article class="focus__block">
-            <h3>Claridad sobre caos</h3>
-            <p>Menos estímulos, decisiones más firmes y una imagen que respira.</p>
+            <h3>Claridad visual</h3>
+            <p>Decisiones firmes para que cada plano se sienta editorial.</p>
           </article>
           <article class="focus__block">
-            <h3>Consistencia antes que intensidad</h3>
-            <p>El hábito sostiene la estética, la calma sostiene el ritmo.</p>
+            <h3>Ritmo que respira</h3>
+            <p>Secuencias con pausa, intención y sentido cinematográfico.</p>
           </article>
           <article class="focus__block">
-            <h3>Vivir con intención</h3>
-            <p>El set es reflejo de cómo vivimos: atentos, presentes, honestos.</p>
+            <h3>Dirección humana</h3>
+            <p>Equipos alineados para producir sin ruido y con enfoque total.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="process reveal" id="proceso">
+    <section class="process" id="proceso">
       <div class="section-inner">
         <div class="section-header">
           <span class="section-label">Proceso</span>
-          <h2>Cuatro pasos, una visión clara.</h2>
+          <h2>Del concepto al impacto.</h2>
         </div>
         <div class="process__steps">
           <div class="process__step">
             <span>01</span>
-            <h3>Descubrimiento</h3>
-            <p>Escucha profunda, objetivos claros.</p>
+            <h3>Brief</h3>
+            <p>Escuchamos y alineamos la narrativa con tu visión.</p>
           </div>
           <div class="process__step">
             <span>02</span>
-            <h3>Narrativa</h3>
-            <p>Una historia con ritmo y propósito.</p>
+            <h3>Guión visual</h3>
+            <p>Definimos estética, ritmo y referentes premium.</p>
           </div>
           <div class="process__step">
             <span>03</span>
-            <h3>Dirección visual</h3>
-            <p>Luz, cámara y composición en equilibrio.</p>
+            <h3>Rodaje</h3>
+            <p>Producción precisa, con calma y dirección editorial.</p>
           </div>
           <div class="process__step">
             <span>04</span>
             <h3>Entrega</h3>
-            <p>Edición limpia, acabado premium.</p>
+            <p>Postproducción con acabado cinematográfico.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="contact reveal" id="contacto">
+    <section class="contact" id="contacto">
       <div class="section-inner contact__inner">
-        <h2>Construyamos algo silencioso y poderoso.</h2>
+        <h2>Hablemos de tu próxima campaña.</h2>
+        <p>Agenda una conversación rápida y diseñemos algo memorable.</p>
         <div class="contact__actions">
+          <!-- TODO: reemplazar mailto por el correo real -->
           <a class="button button--primary" href="mailto:hello@skylonefilms.com">Escríbeme</a>
+          <!-- TODO: enlazar a un PDF real de portfolio -->
           <a class="button button--secondary" href="#">Descargar portfolio</a>
         </div>
       </div>
@@ -182,7 +240,7 @@
 
   <footer class="footer">
     <span>© Skylone Films</span>
-    <span>Imagen en calma, intención constante.</span>
+    <span>Editorial premium · cine urbano.</span>
   </footer>
 
   <div class="modal" id="modal" aria-hidden="true">
@@ -195,10 +253,11 @@
         <p class="modal__synopsis">Un vistazo al universo visual y emocional.</p>
       </div>
       <div class="modal__video">
-        <video controls playsinline>
-          <source src="assets/reel.mp4" type="video/mp4" />
+        <video controls playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80">
+          <source src="assets/videotest.mp4" type="video/mp4" />
         </video>
       </div>
+      <!-- TODO: añadir texto y enlaces específicos del proyecto -->
     </div>
   </div>
 

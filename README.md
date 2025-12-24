@@ -3,7 +3,8 @@
 Landing cinematográfica para Skylone Films con enfoque editorial y premium.
 
 ## Requisitos de assets
-- Añadir el video `assets/reel.mp4` (es el mismo archivo usado en el hero y en los modales de trabajo).
+- Añadir el video `assets/videotest.mp4` (es el mismo archivo usado en el hero, tarjetas y modal).
+- Si no existe este archivo, la página mostrará un placeholder. **Recuerda copiar el video real en `/assets`.**
 
 ## Vista local
 1. Descarga o clona el repositorio.
@@ -16,6 +17,6 @@ Landing cinematográfica para Skylone Films con enfoque editorial y premium.
 4. Guarda y espera a que GitHub publique el sitio.
 
 ## Personalización rápida
-- Cambia el logo dentro de `.nav__logo` en `index.html`.
-- Sustituye textos y enlaces (CTA, mail, descarga) según tu marca.
-- Reemplaza `assets/reel.mp4` por tu reel final.
+- Ajusta los textos en `index.html` (hay comentarios `TODO` donde reemplazar contenido).
+- Sustituye los posters placeholder por imágenes reales del proyecto.
+- Reemplaza `assets/videotest.mp4` por tu reel final.
