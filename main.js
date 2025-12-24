@@ -11,7 +11,6 @@ const modalTitle = modal?.querySelector("#modal-title");
 const modalLabel = modal?.querySelector("#modal-label");
 const modalSynopsis = modal?.querySelector(".modal__synopsis");
 const modalDetails = modal?.querySelector("#modal-details");
-const modalVideo = modal?.querySelector("video");
 const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
 
 const modalContent = {
@@ -127,10 +126,6 @@ const openModal = (key) => {
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   body.style.overflow = "hidden";
-  if (modalVideo && !prefersReducedMotion) {
-    modalVideo.currentTime = 0;
-    modalVideo.play().catch(() => {});
-  }
 };
 
 const closeModal = () => {
@@ -138,7 +133,6 @@ const closeModal = () => {
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
   body.style.overflow = "";
-  modalVideo?.pause();
 };
 
 const modalTriggers = document.querySelectorAll("[data-modal]");
@@ -174,38 +168,37 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-const themeSections = document.querySelectorAll("[data-theme]");
-const setTheme = (theme) => {
-  if (theme === "light") {
-    body.classList.add("theme-light");
-    body.classList.remove("theme-dark");
-  } else {
-    body.classList.add("theme-dark");
-    body.classList.remove("theme-light");
+const applyBackground = (mode, { immediate = false } = {}) => {
+  if (immediate) {
+    body.classList.add("no-transition");
+  }
+  body.classList.remove("bg-hero", "bg-works-dark", "bg-light", "bg-focus-dark");
+  body.classList.add(mode);
+  if (immediate) {
+    requestAnimationFrame(() => {
+      body.classList.remove("no-transition");
+    });
   }
 };
 
-if (themeSections.length) {
-  const themeObserver = new IntersectionObserver(
-    (entries) => {
-      const visibleEntries = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (visibleEntries.length) {
-        const theme = visibleEntries[0].target.dataset.theme || "dark";
-        setTheme(theme);
-      }
-    },
-    { threshold: [0.35, 0.6, 0.9] }
-  );
-
-  themeSections.forEach((section) => themeObserver.observe(section));
-}
-
 const workSection = document.querySelector(".work");
+const focusSection = document.querySelector(".focus");
+const exitWorksTrigger = document.querySelector("[data-exit-works]");
+
 if (workSection) {
   const workObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          applyBackground("bg-works-dark");
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  workObserver.observe(workSection);
+
+  const workCardObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -214,9 +207,37 @@ if (workSection) {
         }
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.35 }
   );
-  workObserver.observe(workSection);
+  workCardObserver.observe(workSection);
+}
+
+if (exitWorksTrigger) {
+  const exitObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          applyBackground("bg-light");
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+  exitObserver.observe(exitWorksTrigger);
+}
+
+if (focusSection) {
+  const focusObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          applyBackground("bg-focus-dark", { immediate: true });
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
+  focusObserver.observe(focusSection);
 }
 
 const revealElements = document.querySelectorAll(".reveal");
@@ -240,27 +261,12 @@ if (prefersReducedMotion) {
 const workCards = document.querySelectorAll(".work-card");
 
 workCards.forEach((card) => {
-  const video = card.querySelector(".work-card__video");
-  if (video) {
-    video.addEventListener("loadedmetadata", () => {
-      video.pause();
-      video.currentTime = 0;
-    });
-  }
-
   const handleEnter = () => {
     card.classList.add("is-hovered");
-    if (video && !prefersReducedMotion) {
-      video.play().catch(() => {});
-    }
   };
 
   const handleLeave = () => {
     card.classList.remove("is-hovered");
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
   };
 
   card.addEventListener("pointerenter", handleEnter);
