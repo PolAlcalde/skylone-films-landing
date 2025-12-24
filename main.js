@@ -125,6 +125,7 @@ if (themeSection) {
         } else if (entry.boundingClientRect.top > 0) {
           body.classList.remove("theme-dark");
           body.classList.add("theme-light");
+          themeSection.classList.remove("is-active");
         }
       });
     },
@@ -133,8 +134,6 @@ if (themeSection) {
 
   themeObserver.observe(themeSection);
 }
-
-const workGrid = document.querySelector("[data-work-grid]");
 const workCards = document.querySelectorAll(".work-card");
 
 workCards.forEach((card) => {
@@ -147,9 +146,6 @@ workCards.forEach((card) => {
   }
 
   const handleEnter = () => {
-    if (workGrid) {
-      workGrid.classList.add("has-hover");
-    }
     card.classList.add("is-hovered");
     if (video && !prefersReducedMotion) {
       video.play().catch(() => {});
@@ -158,9 +154,6 @@ workCards.forEach((card) => {
 
   const handleLeave = () => {
     card.classList.remove("is-hovered");
-    if (workGrid) {
-      workGrid.classList.remove("has-hover");
-    }
     if (video) {
       video.pause();
       video.currentTime = 0;

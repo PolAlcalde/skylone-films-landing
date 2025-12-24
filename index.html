@@ -23,11 +23,6 @@
     <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
 
     <div class="nav__actions">
-      <button class="nav__user" type="button" aria-label="Perfil">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-4.42 0-8 2-8 4v2h16v-2c0-2-3.58-4-8-4Z" />
-        </svg>
-      </button>
       <a class="button button--ghost nav__cta" href="#contacto">
         <span>HABLEMOS</span>
       </a>
@@ -40,6 +35,7 @@
       <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
       <nav class="menu-overlay__links">
         <a href="#trabajo">Trabajo</a>
+        <a href="#quien">Quién soy</a>
         <a href="#enfoque">Enfoque</a>
         <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
@@ -53,19 +49,83 @@
       <video class="hero__video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80">
         <source src="assets/videotest.mp4" type="video/mp4" />
       </video>
+      <div class="hero__top-gradient" aria-hidden="true"></div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
-        <p class="hero__eyebrow">Editorial premium · cine urbano</p>
         <h1>Skylone Films</h1>
-        <p class="hero__subtitle">
-          Historias cinematográficas con ritmo editorial y sensibilidad urbana.
-          Imágenes que se sienten y permanecen.
-        </p>
+        <p class="hero__subtitle">Historias cinematográficas con ritmo editorial y sensibilidad urbana.</p>
         <div class="hero__actions">
-          <button class="button button--primary" type="button" data-modal="reel">Ver reel</button>
-          <a class="button button--secondary" href="#trabajo">Explorar trabajo</a>
+          <button class="button button--editorial" type="button" data-modal="reel">Ver reel</button>
+          <a class="button button--ghost" href="#trabajo">Explorar trabajo</a>
         </div>
-        <p class="hero__signature">Calma, dirección y intención.</p>
+      </div>
+    </section>
+
+    <section class="work" id="trabajo" data-theme="dark">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label">Trabajo</span>
+          <h2>Tarjetas grandes, ritmo editorial.</h2>
+        </div>
+        <!-- TODO: sustituir posters e imágenes placeholder por material real -->
+        <div class="work__grid" data-work-grid>
+          <article class="work-card">
+            <div class="work-card__media">
+              <!-- TODO: reemplazar imagen editorial urbana por material real -->
+              <img class="work-card__image" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80" alt="Escena urbana editorial" />
+              <video class="work-card__video" muted loop playsinline preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="work-card__info">
+              <p class="work-card__category">Campaña</p>
+              <h3>Ciudad en pausa</h3>
+              <span class="work-card__arrow">→</span>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card__media">
+              <!-- TODO: reemplazar imagen editorial automoción por material real -->
+              <img class="work-card__image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Automoción editorial nocturna" />
+              <video class="work-card__video" muted loop playsinline preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="work-card__info">
+              <p class="work-card__category">Editorial</p>
+              <h3>Presencia discreta</h3>
+              <span class="work-card__arrow">→</span>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card__media">
+              <!-- TODO: reemplazar imagen editorial urbana por material real -->
+              <img class="work-card__image" src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1600&q=80" alt="Calle iluminada con estilo editorial" />
+              <video class="work-card__video" muted loop playsinline preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="work-card__info">
+              <p class="work-card__category">Lifestyle</p>
+              <h3>Luz editorial</h3>
+              <span class="work-card__arrow">→</span>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card__media">
+              <!-- TODO: reemplazar imagen editorial automoción por material real -->
+              <img class="work-card__image" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1600&q=80" alt="Detalle de automóvil premium" />
+              <video class="work-card__video" muted loop playsinline preload="metadata">
+                <source src="assets/videotest.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="work-card__info">
+              <p class="work-card__category">Automoción</p>
+              <h3>Ritmo controlado</h3>
+              <span class="work-card__arrow">→</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -76,97 +136,6 @@
           Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
           Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
         </p>
-      </div>
-    </section>
-
-    <section class="transition" id="transicion" data-theme="dark">
-      <div class="section-inner">
-        <div class="transition__header">
-          <span class="section-label">El viaje comienza</span>
-          <h2>Tu campaña se siente antes de verla.</h2>
-          <p>Entramos en un universo más profundo, donde el silencio es protagonista.</p>
-        </div>
-        <div class="transition__cards">
-          <!-- TODO: reemplazar fondos placeholder por imágenes editoriales reales -->
-          <article class="transition-card">
-            <div class="transition-card__media" aria-hidden="true"></div>
-            <div class="transition-card__content">
-              <p class="transition-card__label">Dirección creativa</p>
-              <h3>Editorial nocturno</h3>
-            </div>
-          </article>
-          <article class="transition-card">
-            <div class="transition-card__media" aria-hidden="true"></div>
-            <div class="transition-card__content">
-              <p class="transition-card__label">Producción</p>
-              <h3>Ritmo metropolitano</h3>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="work" id="trabajo">
-      <div class="section-inner">
-        <div class="section-header">
-          <span class="section-label">Trabajo</span>
-          <h2>Tarjetas grandes, ritmo editorial.</h2>
-        </div>
-        <!-- TODO: sustituir posters e imágenes placeholder por material real -->
-        <div class="work__grid" data-work-grid>
-          <article class="work-card" data-modal="urbano">
-            <div class="work-card__media">
-              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80">
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
-              <span class="work-card__chip">Urbano</span>
-            </div>
-            <div class="work-card__info">
-              <p class="work-card__category">Campaña</p>
-              <h3>Ciudad en pausa</h3>
-              <span class="work-card__arrow">→</span>
-            </div>
-          </article>
-          <article class="work-card" data-modal="marca">
-            <div class="work-card__media">
-              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80">
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
-              <span class="work-card__chip">Marca</span>
-            </div>
-            <div class="work-card__info">
-              <p class="work-card__category">Editorial</p>
-              <h3>Presencia discreta</h3>
-              <span class="work-card__arrow">→</span>
-            </div>
-          </article>
-          <article class="work-card" data-modal="nocturno">
-            <div class="work-card__media">
-              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80">
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
-              <span class="work-card__chip">Nocturno</span>
-            </div>
-            <div class="work-card__info">
-              <p class="work-card__category">Lifestyle</p>
-              <h3>Luz editorial</h3>
-              <span class="work-card__arrow">→</span>
-            </div>
-          </article>
-          <article class="work-card" data-modal="movimiento">
-            <div class="work-card__media">
-              <video class="work-card__video" muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80">
-                <source src="assets/videotest.mp4" type="video/mp4" />
-              </video>
-              <span class="work-card__chip">Movimiento</span>
-            </div>
-            <div class="work-card__info">
-              <p class="work-card__category">Automoción</p>
-              <h3>Ritmo controlado</h3>
-              <span class="work-card__arrow">→</span>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
