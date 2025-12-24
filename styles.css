@@ -567,6 +567,140 @@ section {
   transform: translateY(0);
 }
 
+.que-hacemos {
+  background: radial-gradient(circle at top, rgba(0, 164, 180, 0.1), rgba(0, 0, 0, 0)),
+    linear-gradient(180deg, rgba(3, 19, 26, 0.96), rgba(3, 19, 26, 0.92));
+}
+
+.que-hacemos h2 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+}
+
+.que-hacemos__panels {
+  display: flex;
+  gap: 18px;
+  min-height: 420px;
+}
+
+.que-hacemos__panel {
+  flex: 1 1 0;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 420px;
+  color: #f7f7f7;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(229, 229, 229, 0.12);
+  transition: flex 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.6s ease;
+}
+
+.que-hacemos__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 14, 0.45);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+}
+
+.que-hacemos__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.2) 35%,
+    rgba(0, 0, 0, 0.2) 65%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+  opacity: 0.9;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1;
+}
+
+.que-hacemos__panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.que-hacemos__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.que-hacemos__panel h3 {
+  font-size: 1.4rem;
+  margin: 10px 0 8px;
+}
+
+.que-hacemos__panel p {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 360px;
+  transform: translateY(10px);
+  opacity: 0.75;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.que-hacemos__panel:hover,
+.que-hacemos__panel.is-active {
+  flex: 2.1 1 0;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.que-hacemos__panel:hover::before,
+.que-hacemos__panel.is-active::before {
+  opacity: 0.25;
+}
+
+.que-hacemos__panel:hover::after,
+.que-hacemos__panel.is-active::after {
+  opacity: 0.7;
+}
+
+.que-hacemos__panel:hover p,
+.que-hacemos__panel.is-active p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.que-hacemos__panel--foto {
+  /* TODO: reemplazar fondo por imagen real */
+  background-image: linear-gradient(135deg, rgba(0, 164, 180, 0.3), rgba(2, 8, 12, 0.9)),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 55%);
+}
+
+.que-hacemos__panel--corporativo {
+  /* TODO: reemplazar fondo por imagen real */
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(3, 19, 26, 0.95)),
+    radial-gradient(circle at 70% 20%, rgba(0, 164, 180, 0.2), transparent 60%);
+}
+
+.que-hacemos__panel--docu {
+  /* TODO: reemplazar fondo por imagen real */
+  background-image: linear-gradient(160deg, rgba(255, 59, 46, 0.25), rgba(2, 10, 14, 0.95)),
+    radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.1), transparent 60%);
+}
+
+.que-hacemos__panel--entrevista {
+  /* TODO: reemplazar fondo por imagen real */
+  background-image: linear-gradient(150deg, rgba(0, 164, 180, 0.2), rgba(2, 10, 14, 0.95)),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.12), transparent 60%);
+}
+
+.que-hacemos__panel--redes {
+  /* TODO: reemplazar fondo por imagen real */
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(1, 8, 12, 0.95)),
+    radial-gradient(circle at 30% 20%, rgba(255, 59, 46, 0.2), transparent 60%);
+}
+
 .about h2,
 .work h2,
 .focus h2,
@@ -1299,6 +1433,18 @@ section {
     min-height: 60vh;
   }
 
+  .que-hacemos__panels {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+
+  .que-hacemos__panel {
+    min-width: 72vw;
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+
   .footer__bottom {
     flex-direction: column;
     align-items: flex-start;
@@ -1343,6 +1489,11 @@ section {
   .contact__actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .que-hacemos__panel {
+    min-width: 85vw;
+    padding: 24px;
   }
 }
 
