@@ -74,6 +74,10 @@ main {
   padding-top: 0;
 }
 
+.legal-page main {
+  padding-top: 140px;
+}
+
 section {
   padding: 110px 6vw;
 }
@@ -95,6 +99,40 @@ section {
   letter-spacing: 0.3em;
   font-size: 11px;
   color: var(--accent);
+}
+
+.legal-content {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.legal-content h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.legal-content h2 {
+  font-size: 1.6rem;
+  margin-top: 12px;
+}
+
+.legal-content p,
+.legal-content li {
+  color: var(--text-muted);
+}
+
+.legal-content ul {
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.legal-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .nav {
@@ -137,6 +175,7 @@ section {
   height: 1px;
   background: currentColor;
   display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .nav__title {
@@ -248,6 +287,18 @@ section {
 .menu-overlay.is-open .menu-overlay__panel {
   transform: translateY(0);
   opacity: 1;
+}
+
+.menu-open .nav__icon span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.menu-open .nav__icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-open .nav__icon span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .menu-overlay__close {
@@ -399,7 +450,7 @@ section {
   display: flex;
   flex-direction: column;
   min-height: 72vh;
-  transition: transform 0.4s ease, border-color 0.4s ease;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
   opacity: 0;
   transform: translateY(20px);
@@ -503,6 +554,34 @@ section {
 .work-card__arrow {
   font-size: 1.6rem;
   line-height: 1;
+}
+
+.work-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 229, 229, 0.55);
+  padding: 6px 16px;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.work-card.is-hovered {
+  transform: translateY(-8px);
+  border-color: rgba(0, 164, 180, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.work-card.is-hovered .work-card__cta {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .focus__blocks {
@@ -760,6 +839,12 @@ section {
   max-width: 420px;
   font-size: 0.95rem;
   color: rgba(229, 229, 229, 0.75);
+}
+
+.cookie-banner__text a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .cookie-banner__actions {

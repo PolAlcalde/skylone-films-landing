@@ -25,6 +25,7 @@ const openMenu = () => {
   menuOverlay.classList.add("is-open");
   menuOverlay.setAttribute("aria-hidden", "false");
   body.style.overflow = "hidden";
+  body.classList.add("menu-open");
 };
 
 const closeMenu = () => {
@@ -32,6 +33,7 @@ const closeMenu = () => {
   menuOverlay.classList.remove("is-open");
   menuOverlay.setAttribute("aria-hidden", "true");
   body.style.overflow = "";
+  body.classList.remove("menu-open");
 };
 
 menuOpenButton?.addEventListener("click", openMenu);
@@ -129,24 +131,33 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-const focusSection = document.getElementById("enfoque");
-if (focusSection) {
-  const focusObserver = new IntersectionObserver(
+const themeSections = document.querySelectorAll("[data-theme]");
+const setTheme = (theme) => {
+  if (theme === "light") {
+    body.classList.add("theme-light");
+    body.classList.remove("theme-dark");
+  } else {
+    body.classList.add("theme-dark");
+    body.classList.remove("theme-light");
+  }
+};
+
+if (themeSections.length) {
+  const themeObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          body.classList.add("theme-light");
-          body.classList.remove("theme-dark");
-        } else if (entry.boundingClientRect.top > 0) {
-          body.classList.add("theme-dark");
-          body.classList.remove("theme-light");
-        }
-      });
+      const visibleEntries = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visibleEntries.length) {
+        const theme = visibleEntries[0].target.dataset.theme || "dark";
+        setTheme(theme);
+      }
     },
-    { threshold: 0.35 }
+    { threshold: [0.35, 0.6, 0.9] }
   );
 
-  focusObserver.observe(focusSection);
+  themeSections.forEach((section) => themeObserver.observe(section));
 }
 
 const workSection = document.querySelector(".work");
