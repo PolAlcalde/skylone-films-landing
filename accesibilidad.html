@@ -9,25 +9,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-light legal-page">
+<body class="theme-dark legal-page">
   <header class="nav">
-    <a class="nav__menu" href="index.html">
+    <button class="nav__menu" type="button" data-menu-open>
       <span class="nav__icon" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>
       </span>
-      <span>Inicio</span>
-    </a>
+      <span>Menú</span>
+    </button>
     <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
     <div class="nav__actions">
-      <a class="button button--ghost nav__cta" href="mailto:hello@skylonefilms.com">Contacto</a>
+      <a class="button button--ghost nav__cta" href="index.html#contacto">HABLEMOS</a>
     </div>
   </header>
 
+  <div class="menu-overlay" aria-hidden="true" data-menu>
+    <div class="menu-overlay__backdrop" data-menu-close></div>
+    <div class="menu-overlay__panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
+      <nav class="menu-overlay__links">
+        <a href="index.html#trabajos">Trabajos</a>
+        <a href="index.html#enfoque-proceso">Enfoque y proceso</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </div>
+
   <main>
     <section>
-      <div class="legal-content">
+      <div class="legal-panel legal-content">
         <h1>Accesibilidad</h1>
         <p>Skylone Films se compromete a ofrecer una experiencia accesible para todas las personas, independientemente de sus capacidades.</p>
 
@@ -41,6 +53,9 @@
         <h2>Limitaciones</h2>
         <p>Algunos recursos audiovisuales pueden no disponer de subtítulos o audiodescripción. Estamos trabajando para mejorarlos.</p>
 
+        <h2>Compatibilidad</h2>
+        <p>El sitio se ha diseñado para ser compatible con navegadores modernos y lectores de pantalla habituales.</p>
+
         <h2>Contacto de accesibilidad</h2>
         <p>Si detectas barreras de accesibilidad, escríbenos a <a href="mailto:hello@skylonefilms.com">hello@skylonefilms.com</a>.</p>
       </div>
@@ -50,11 +65,8 @@
   <footer class="footer">
     <div class="footer__bottom">
       <span>© Skylone Films</span>
-      <div class="footer__small-links">
-        <a href="cookies.html">Cookies</a>
-        <a href="privacidad.html">Privacidad</a>
-      </div>
     </div>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>
