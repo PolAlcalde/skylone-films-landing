@@ -1,64 +1,83 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const revealItems = document.querySelectorAll(".reveal");
+
+const body = document.body;
+const menuOverlay = document.querySelector("[data-menu]");
+const menuOpenButton = document.querySelector("[data-menu-open]");
+const menuCloseButtons = document.querySelectorAll("[data-menu-close]");
+const menuLinks = menuOverlay?.querySelectorAll("a") ?? [];
 
 const modal = document.getElementById("modal");
-const modalTitle = modal.querySelector("#modal-title");
-const modalSynopsis = modal.querySelector(".modal__synopsis");
-const modalVideo = modal.querySelector("video");
-const modalCloseButtons = modal.querySelectorAll("[data-modal-close]");
+const modalTitle = modal?.querySelector("#modal-title");
+const modalSynopsis = modal?.querySelector(".modal__synopsis");
+const modalVideo = modal?.querySelector("video");
+const modalCloseButtons = modal?.querySelectorAll("[data-modal-close]");
 
 const modalContent = {
   reel: {
     title: "Reel Skylone",
-    synopsis: "Un recorrido breve por la estética y el ritmo de Skylone Films.",
+    synopsis: "Un recorrido breve por la estética y el ritmo editorial.",
   },
   urbano: {
-    title: "Ritmo de ciudad",
-    synopsis: "Un retrato contenido de movimiento urbano y pausa emocional.",
+    title: "Ciudad en pausa",
+    synopsis: "Campaña urbana con detalle, calma y energía controlada.",
   },
   marca: {
-    title: "Presencia de marca",
-    synopsis: "Una pieza sobria con foco en detalle, textura y claridad.",
+    title: "Presencia discreta",
+    synopsis: "Narrativa de marca con textura premium y dirección precisa.",
   },
   nocturno: {
-    title: "Luz en silencio",
-    synopsis: "Exploración nocturna con contrastes suaves y ritmo sereno.",
-  },
-  introspectivo: {
-    title: "Dentro de la calma",
-    synopsis: "Narrativa interna donde cada plano respira.",
+    title: "Luz editorial",
+    synopsis: "Nocturno cinematográfico con contraste y atmósfera.",
   },
   movimiento: {
-    title: "Flujo natural",
-    synopsis: "Movimiento preciso y una cadencia que sostiene la emoción.",
-  },
-  silencio: {
-    title: "Fuerza quieta",
-    synopsis: "Presencia silenciosa, tensión controlada y composición limpia.",
+    title: "Ritmo controlado",
+    synopsis: "Movimiento medido para una experiencia visual elegante.",
   },
 };
 
+const openMenu = () => {
+  if (!menuOverlay) return;
+  menuOverlay.classList.add("is-open");
+  menuOverlay.setAttribute("aria-hidden", "false");
+  body.style.overflow = "hidden";
+};
+
+const closeMenu = () => {
+  if (!menuOverlay) return;
+  menuOverlay.classList.remove("is-open");
+  menuOverlay.setAttribute("aria-hidden", "true");
+  body.style.overflow = "";
+};
+
+menuOpenButton?.addEventListener("click", openMenu);
+menuCloseButtons.forEach((button) => {
+  button.addEventListener("click", closeMenu);
+});
+
+menuLinks.forEach((link) => {
+  link.addEventListener("click", closeMenu);
+});
+
 const openModal = (key) => {
   const data = modalContent[key];
-  if (!data) return;
+  if (!data || !modal || !modalTitle || !modalSynopsis) return;
   modalTitle.textContent = data.title;
   modalSynopsis.textContent = data.synopsis;
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  if (modalVideo) {
+  body.style.overflow = "hidden";
+  if (modalVideo && !prefersReducedMotion) {
     modalVideo.currentTime = 0;
     modalVideo.play().catch(() => {});
   }
 };
 
 const closeModal = () => {
+  if (!modal) return;
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  if (modalVideo) {
-    modalVideo.pause();
-  }
+  body.style.overflow = "";
+  modalVideo?.pause();
 };
 
 const modalTriggers = document.querySelectorAll("[data-modal]");
@@ -79,29 +98,77 @@ modalTriggers.forEach((trigger) => {
   }
 });
 
-modalCloseButtons.forEach((button) => {
+modalCloseButtons?.forEach((button) => {
   button.addEventListener("click", closeModal);
 });
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("is-open")) {
-    closeModal();
+  if (event.key === "Escape") {
+    if (modal?.classList.contains("is-open")) {
+      closeModal();
+    }
+    if (menuOverlay?.classList.contains("is-open")) {
+      closeMenu();
+    }
   }
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
+const themeSection = document.querySelector("[data-theme='dark']");
+if (themeSection) {
+  const themeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          body.classList.add("theme-dark");
+          body.classList.remove("theme-light");
+          themeSection.classList.add("is-active");
+        } else if (entry.boundingClientRect.top > 0) {
+          body.classList.remove("theme-dark");
+          body.classList.add("theme-light");
+        }
+      });
+    },
+    { threshold: 0.35 }
+  );
 
-revealItems.forEach((item) => revealObserver.observe(item));
-
-if (prefersReducedMotion) {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
+  themeObserver.observe(themeSection);
 }
+
+const workGrid = document.querySelector("[data-work-grid]");
+const workCards = document.querySelectorAll(".work-card");
+
+workCards.forEach((card) => {
+  const video = card.querySelector(".work-card__video");
+  if (video) {
+    video.addEventListener("loadedmetadata", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  }
+
+  const handleEnter = () => {
+    if (workGrid) {
+      workGrid.classList.add("has-hover");
+    }
+    card.classList.add("is-hovered");
+    if (video && !prefersReducedMotion) {
+      video.play().catch(() => {});
+    }
+  };
+
+  const handleLeave = () => {
+    card.classList.remove("is-hovered");
+    if (workGrid) {
+      workGrid.classList.remove("has-hover");
+    }
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
+
+  card.addEventListener("pointerenter", handleEnter);
+  card.addEventListener("pointerleave", handleLeave);
+  card.addEventListener("focusin", handleEnter);
+  card.addEventListener("focusout", handleLeave);
+});
