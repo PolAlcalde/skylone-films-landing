@@ -1,12 +1,21 @@
 # Skylone Films Landing
 
-Cinematic portfolio website for Skylone Films. Open `index.html` in your browser to view locally.
+Landing cinematográfica para Skylone Films con enfoque editorial y premium.
 
-## Local preview
-1. Download or clone the repository.
-2. Open `index.html` directly in your browser.
+## Requisitos de assets
+- Añadir el video `assets/reel.mp4` (es el mismo archivo usado en el hero y en los modales de trabajo).
 
-## Customize
-- Update copy in `index.html` where marked with `TODO` comments.
-- Replace the reel and portfolio links in the hero and contact sections.
-- Swap the placeholder logo inside `.nav__logo` with your SVG/PNG.
+## Vista local
+1. Descarga o clona el repositorio.
+2. Abre `index.html` directamente en tu navegador.
+
+## Publicar en GitHub Pages
+1. Ve a **Settings → Pages**.
+2. En **Build and deployment**, selecciona **Deploy from a branch**.
+3. Elige la rama `main` y la carpeta `/root`.
+4. Guarda y espera a que GitHub publique el sitio.
+
+## Personalización rápida
+- Cambia el logo dentro de `.nav__logo` en `index.html`.
+- Sustituye textos y enlaces (CTA, mail, descarga) según tu marca.
+- Reemplaza `assets/reel.mp4` por tu reel final.

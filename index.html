@@ -1,183 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skylone Films — Cinematic Portfolio</title>
+  <title>Skylone Films — Portafolio Cinematográfico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-noise" aria-hidden="true"></div>
-  <div class="page-grid" aria-hidden="true"></div>
-
   <header class="nav">
-    <div class="nav__logo">
-      <!-- TODO: Replace with your SVG/PNG logo -->
+    <div class="nav__logo" aria-label="Skylone Films">
       <span class="logo-mark">SF</span>
       <span class="logo-text">Skylone Films</span>
     </div>
     <nav class="nav__links">
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#growth">Growth</a>
-      <a href="#contact">Contact</a>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#enfoque">Enfoque</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    <a class="button button--ghost" href="#contact">Work with me</a>
+    <a class="button button--ghost" href="#contacto">Hablemos</a>
   </header>
 
   <main>
     <section class="hero" id="hero">
-      <div class="hero__spotlight" aria-hidden="true"></div>
-      <div class="hero__panel glass-panel">
-        <div class="hero__eyebrow">Cinematic portfolio · 2024</div>
-        <h1>I film what’s beneath the noise.</h1>
-        <p>
-          Filmmaker focused on urban stories and intentional calm — creating visual narratives
-          that make people breathe, feel, and return to themselves.
+      <video class="hero__video" autoplay muted loop playsinline poster="">
+        <source src="assets/reel.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">Cine urbano · calma · intención</p>
+        <h1>Skylone Films</h1>
+        <p class="hero__subtitle">
+          Cine urbano y emocional, con intención y calma.
+          Historias que respiran y permanecen.
         </p>
         <div class="hero__actions">
-          <!-- TODO: Replace href with your reel link -->
-          <a class="button button--primary" href="#" aria-label="Watch reel">Watch Reel</a>
-          <a class="button button--secondary" href="#work">Explore Work</a>
+          <button class="button button--primary" type="button" data-modal="reel">Ver reel</button>
+          <a class="button button--secondary" href="#trabajo">Explorar trabajo</a>
         </div>
-      </div>
-      <div class="scroll-indicator" aria-hidden="true">
-        <span></span>
+        <p class="hero__signature">Where moments become stories.</p>
       </div>
     </section>
 
-    <section class="manifesto section-reveal" id="manifesto">
-      <div class="glass-panel manifesto__panel">
-        <ul class="manifesto__bullets">
-          <li>Silence as storytelling.</li>
-          <li>Light with intention.</li>
-          <li>Urban calm, emotional truth.</li>
-        </ul>
+    <section class="about reveal" id="quien">
+      <div class="section-inner">
+        <h2>Quién soy</h2>
         <p>
-          “Where moments become stories.” My work captures the quiet in the city —
-          framing motion with discipline, balance, and a patient eye for what’s real.
+          Soy filmmaker con una mirada contenida y honesta. Trabajo desde la disciplina,
+          la coherencia visual y el crecimiento personal. Busco calma en cada rodaje,
+          claridad en la narrativa y un ritmo que permita sentir. Menos ruido, más intención.
         </p>
       </div>
     </section>
 
-    <section class="work section-reveal" id="work">
-      <div class="section-header">
-        <span class="section-label">Featured Work</span>
-        <h2>Stories that are felt, not just seen.</h2>
-        <div class="section-divider">
-          <span>Selected frames · 2021–2024</span>
+    <section class="work reveal" id="trabajo">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label">Trabajo</span>
+          <h2>Series visuales con carácter editorial.</h2>
         </div>
-      </div>
-      <div class="work__grid">
-        <article class="work-card" data-modal="modal-urban">
-          <div class="work-card__frame"></div>
-          <h3>Urban Pulse</h3>
-          <span class="work-card__meta">Urban · 01:24 · Grit + stillness</span>
-        </article>
-        <article class="work-card" data-modal="modal-brand">
-          <div class="work-card__frame"></div>
-          <h3>Quiet Brand Story</h3>
-          <span class="work-card__meta">Brand Story · 02:10 · Clarity</span>
-        </article>
-        <article class="work-card" data-modal="modal-introspective">
-          <div class="work-card__frame"></div>
-          <h3>Inner Lines</h3>
-          <span class="work-card__meta">Introspective · 01:52 · Reflection</span>
-        </article>
-        <article class="work-card" data-modal="modal-night">
-          <div class="work-card__frame"></div>
-          <h3>Night Study</h3>
-          <span class="work-card__meta">Night Study · 00:58 · Contrast</span>
-        </article>
-        <article class="work-card" data-modal="modal-motion">
-          <div class="work-card__frame"></div>
-          <h3>Motion &amp; Light</h3>
-          <span class="work-card__meta">Motion &amp; Light · 01:35 · Flow</span>
-        </article>
-        <article class="work-card" data-modal="modal-quiet">
-          <div class="work-card__frame"></div>
-          <h3>Quiet Power</h3>
-          <span class="work-card__meta">Quiet Power · 01:12 · Grounded</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="process section-reveal" id="process">
-      <div class="section-header">
-        <span class="section-label">Process</span>
-        <h2>Direction without noise.</h2>
-      </div>
-      <div class="process__line" aria-hidden="true"></div>
-      <div class="process__steps">
-        <div class="process__step">
-          <h3>Discovery</h3>
-          <p>Listen first, find the truth worth filming.</p>
-        </div>
-        <div class="process__step">
-          <h3>Narrative</h3>
-          <p>Shape a story arc that breathes and lingers.</p>
-        </div>
-        <div class="process__step">
-          <h3>Visual Direction</h3>
-          <p>Design light, framing, and rhythm with restraint.</p>
-        </div>
-        <div class="process__step">
-          <h3>Delivery</h3>
-          <p>Finish with precision — cinematic, clean, calm.</p>
+        <div class="work__grid">
+          <article class="work-card" data-modal="urbano">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Urbano</span>
+              <h3>Ritmo de ciudad</h3>
+              <p>Movimiento contenido, respiración visual.</p>
+            </div>
+          </article>
+          <article class="work-card" data-modal="marca">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Marca</span>
+              <h3>Presencia de marca</h3>
+              <p>Imagen sobria, intención clara.</p>
+            </div>
+          </article>
+          <article class="work-card" data-modal="nocturno">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Nocturno</span>
+              <h3>Luz en silencio</h3>
+              <p>Contrastes suaves, energía quieta.</p>
+            </div>
+          </article>
+          <article class="work-card" data-modal="introspectivo">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Introspectivo</span>
+              <h3>Dentro de la calma</h3>
+              <p>Mirada interna, pausa precisa.</p>
+            </div>
+          </article>
+          <article class="work-card" data-modal="movimiento">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Movimiento</span>
+              <h3>Flujo natural</h3>
+              <p>Ritmo constante, emoción limpia.</p>
+            </div>
+          </article>
+          <article class="work-card" data-modal="silencio">
+            <div class="work-card__thumb"></div>
+            <div class="work-card__info">
+              <span class="work-card__tag">Silencio</span>
+              <h3>Fuerza quieta</h3>
+              <p>Presencia sin ruido, foco total.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="growth section-reveal" id="growth">
-      <div class="section-header">
-        <span class="section-label">Growth</span>
-        <h2>Cinema built on emotion.</h2>
-        <p class="section-subtitle">
-          Filmmaking and personal growth share the same discipline: clarity, rhythm, and care.
-          The work is about staying well enough to keep creating.
-        </p>
-      </div>
-      <div class="growth__cards">
-        <article class="glass-panel growth-card">
-          <h3>Clarity over chaos</h3>
-          <p>Decisions stay simple, images stay honest.</p>
-        </article>
-        <article class="glass-panel growth-card">
-          <h3>Consistency beats intensity</h3>
-          <p>Small habits keep the lens steady.</p>
-        </article>
-        <article class="glass-panel growth-card">
-          <h3>Build a life you can film</h3>
-          <p>Energy, rest, and focus are part of the craft.</p>
-        </article>
-      </div>
-      <div class="accordion" id="approach">
-        <button class="accordion__trigger" type="button" aria-expanded="false">
-          Read my approach
-          <span class="accordion__icon" aria-hidden="true"></span>
-        </button>
-        <div class="accordion__content" role="region">
-          <p>
-            I keep rituals before every shoot: early walks, no noise, and a clear shot list.
-            I choose fewer projects, then show up with full attention. Editing is a form of
-            meditation — I cut until the story feels quiet and true. I’m learning that balance
-            builds better work, and that a calm mind sees better light. Un día a la vez.
-          </p>
+    <section class="focus reveal" id="enfoque">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label">Enfoque</span>
+          <h2>Desarrollo personal aplicado al cine.</h2>
+        </div>
+        <div class="focus__blocks">
+          <article class="focus__block">
+            <h3>Claridad sobre caos</h3>
+            <p>Menos estímulos, decisiones más firmes y una imagen que respira.</p>
+          </article>
+          <article class="focus__block">
+            <h3>Consistencia antes que intensidad</h3>
+            <p>El hábito sostiene la estética, la calma sostiene el ritmo.</p>
+          </article>
+          <article class="focus__block">
+            <h3>Vivir con intención</h3>
+            <p>El set es reflejo de cómo vivimos: atentos, presentes, honestos.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="contact section-reveal" id="contact">
-      <div class="glass-panel contact__panel">
-        <h2>Let’s build something quiet and powerful.</h2>
+    <section class="process reveal" id="proceso">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label">Proceso</span>
+          <h2>Cuatro pasos, una visión clara.</h2>
+        </div>
+        <div class="process__steps">
+          <div class="process__step">
+            <span>01</span>
+            <h3>Descubrimiento</h3>
+            <p>Escucha profunda, objetivos claros.</p>
+          </div>
+          <div class="process__step">
+            <span>02</span>
+            <h3>Narrativa</h3>
+            <p>Una historia con ritmo y propósito.</p>
+          </div>
+          <div class="process__step">
+            <span>03</span>
+            <h3>Dirección visual</h3>
+            <p>Luz, cámara y composición en equilibrio.</p>
+          </div>
+          <div class="process__step">
+            <span>04</span>
+            <h3>Entrega</h3>
+            <p>Edición limpia, acabado premium.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact reveal" id="contacto">
+      <div class="section-inner contact__inner">
+        <h2>Construyamos algo silencioso y poderoso.</h2>
         <div class="contact__actions">
-          <!-- TODO: Replace with your email -->
-          <a class="button button--primary" href="mailto:hello@skylonefilms.com">Email me</a>
-          <!-- TODO: Replace with your portfolio PDF link -->
-          <a class="button button--secondary" href="#">Download Portfolio PDF</a>
+          <a class="button button--primary" href="mailto:hello@skylonefilms.com">Escríbeme</a>
+          <a class="button button--secondary" href="#">Descargar portfolio</a>
         </div>
       </div>
     </section>
@@ -185,28 +182,22 @@
 
   <footer class="footer">
     <span>© Skylone Films</span>
-    <span>Where moments become stories.</span>
+    <span>Imagen en calma, intención constante.</span>
   </footer>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="modal" aria-hidden="true">
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal__close" type="button" data-modal-close aria-label="Close">×</button>
-      <h3 id="modal-title">Project title</h3>
-      <p class="modal__synopsis">Short synopsis placeholder.</p>
-      <div class="modal__meta">
-        <div>
-          <h4>Role</h4>
-          <p>Director · Cinematography</p>
-        </div>
-        <div>
-          <h4>Tools</h4>
-          <p>FX6 · Prime lenses · Resolve</p>
-        </div>
-        <div>
-          <h4>Outcome</h4>
-          <p>Short film, brand reel, + social cutdowns.</p>
-        </div>
+      <button class="modal__close" type="button" data-modal-close aria-label="Cerrar">×</button>
+      <div class="modal__header">
+        <p class="modal__label">Proyecto</p>
+        <h3 id="modal-title">Reel Skylone</h3>
+        <p class="modal__synopsis">Un vistazo al universo visual y emocional.</p>
+      </div>
+      <div class="modal__video">
+        <video controls playsinline>
+          <source src="assets/reel.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   </div>
