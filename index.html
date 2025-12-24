@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="theme-light">
+<body class="theme-dark">
   <header class="nav">
     <button class="nav__menu" type="button" data-menu-open>
       <span class="nav__icon" aria-hidden="true">
@@ -23,7 +23,7 @@
     <div class="nav__title" aria-label="Skylone Films">SKYLONE FILMS</div>
 
     <div class="nav__actions">
-      <a class="button button--ghost nav__cta" href="#contacto">
+      <a class="button button--ghost nav__cta" href="#contacto" data-scroll>
         <span>HABLEMOS</span>
       </a>
     </div>
@@ -34,10 +34,9 @@
     <div class="menu-overlay__panel" role="dialog" aria-modal="true" aria-label="Menú">
       <button class="menu-overlay__close" type="button" data-menu-close aria-label="Cerrar">×</button>
       <nav class="menu-overlay__links">
-        <a href="#trabajo">Trabajo</a>
-        <a href="#quien">Quién soy</a>
+        <a href="#trabajos">Trabajos</a>
         <a href="#enfoque">Enfoque</a>
-        <a href="#proceso">Proceso</a>
+        <a href="#enfoque">Proceso</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -53,18 +52,20 @@
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
         <h1>Skylone Films</h1>
+        <!-- TODO: actualizar texto principal del hero -->
         <p class="hero__subtitle">Historias cinematográficas con ritmo editorial y sensibilidad urbana.</p>
         <div class="hero__actions">
-          <button class="button button--editorial" type="button" data-modal="reel">Ver reel</button>
-          <a class="button button--ghost" href="#trabajo">Explorar trabajo</a>
+          <a class="button button--editorial" href="#trabajos" data-scroll>Ver trabajos</a>
+          <button class="button button--ghost" type="button" data-modal="sobre">Sobre mí</button>
         </div>
       </div>
     </section>
 
-    <section class="work" id="trabajo" data-theme="dark">
+    <section class="work" id="trabajos" data-theme="dark">
       <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
           <span class="section-label">Trabajo</span>
+          <!-- TODO: ajustar copy del bloque de trabajos -->
           <h2>Tarjetas grandes, ritmo editorial.</h2>
         </div>
         <!-- TODO: sustituir posters e imágenes placeholder por material real -->
@@ -130,8 +131,9 @@
     </section>
 
     <section class="about" id="quien">
-      <div class="section-inner">
+      <div class="section-inner reveal">
         <h2>Quién soy</h2>
+        <!-- TODO: actualizar la descripción personal -->
         <p>
           Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
           Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
@@ -141,11 +143,12 @@
 
     <section class="focus" id="enfoque">
       <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
           <span class="section-label">Enfoque</span>
+          <!-- TODO: ajustar título de enfoque -->
           <h2>Dirección creativa con mirada premium.</h2>
         </div>
-        <div class="focus__blocks">
+        <div class="focus__blocks reveal">
           <article class="focus__block">
             <h3>Claridad visual</h3>
             <p>Decisiones firmes para que cada plano se sienta editorial.</p>
@@ -159,16 +162,12 @@
             <p>Equipos alineados para producir sin ruido y con enfoque total.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="process" id="proceso">
-      <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header focus__process-header reveal">
           <span class="section-label">Proceso</span>
+          <!-- TODO: ajustar título del proceso -->
           <h2>Del concepto al impacto.</h2>
         </div>
-        <div class="process__steps">
+        <div class="process__steps reveal">
           <div class="process__step">
             <span>01</span>
             <h3>Brief</h3>
@@ -194,22 +193,52 @@
     </section>
 
     <section class="contact" id="contacto">
-      <div class="section-inner contact__inner">
+      <div class="section-inner contact__inner reveal">
+        <!-- TODO: ajustar texto de contacto -->
         <h2>Hablemos de tu próxima campaña.</h2>
         <p>Agenda una conversación rápida y diseñemos algo memorable.</p>
         <div class="contact__actions">
           <!-- TODO: reemplazar mailto por el correo real -->
           <a class="button button--primary" href="mailto:hello@skylonefilms.com">Escríbeme</a>
-          <!-- TODO: enlazar a un PDF real de portfolio -->
-          <a class="button button--secondary" href="#">Descargar portfolio</a>
+          <a class="button button--secondary" href="https://calendly.com/polalcalde/30min" target="_blank" rel="noopener">Agendar llamada gratis</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <span>© Skylone Films</span>
-    <span>Editorial premium · cine urbano.</span>
+    <div class="footer__grid">
+      <div class="footer__column">
+        <p class="footer__title">Ubicación y contacto</p>
+        <!-- TODO: actualizar la ubicación o canal de contacto -->
+        <p class="footer__text">Barcelona · Editorial premium</p>
+        <a class="button button--ghost footer__button" href="mailto:hello@skylonefilms.com">Contacto</a>
+      </div>
+      <div class="footer__column">
+        <p class="footer__title">Redes Sociales</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="Vimeo">◎</a>
+          <a href="#" aria-label="LinkedIn">◎</a>
+        </div>
+      </div>
+      <div class="footer__column">
+        <p class="footer__title">Legal</p>
+        <div class="footer__links">
+          <a href="#">Cookies</a>
+          <a href="#">Aviso legal</a>
+          <a href="#">Política de privacidad</a>
+          <a href="#">Accesibilidad</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© Skylone Films</span>
+      <div class="footer__small-links">
+        <a href="#">Cookies</a>
+        <a href="#">Privacidad</a>
+      </div>
+    </div>
   </footer>
 
   <div class="modal" id="modal" aria-hidden="true">
@@ -217,16 +246,60 @@
     <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <button class="modal__close" type="button" data-modal-close aria-label="Cerrar">×</button>
       <div class="modal__header">
-        <p class="modal__label">Proyecto</p>
-        <h3 id="modal-title">Reel Skylone</h3>
-        <p class="modal__synopsis">Un vistazo al universo visual y emocional.</p>
+        <p class="modal__label">Sobre mí</p>
+        <h3 id="modal-title">Sobre mí</h3>
+        <!-- TODO: actualizar el texto del modal "Sobre mí" -->
+        <p class="modal__synopsis">
+          Cineasta con enfoque editorial, obsesionado por el ritmo y la dirección visual.
+          Trabajo con marcas y talentos que buscan imágenes premium, silenciosas y con propósito.
+        </p>
       </div>
       <div class="modal__video">
+        <!-- TODO: reemplazar poster por un fotograma real -->
         <video controls playsinline poster="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80">
           <source src="assets/videotest.mp4" type="video/mp4" />
         </video>
       </div>
       <!-- TODO: añadir texto y enlaces específicos del proyecto -->
+    </div>
+  </div>
+
+  <div class="cookie-banner" data-cookie-banner aria-hidden="true">
+    <div class="cookie-banner__content">
+      <p class="cookie-banner__title">Cookies</p>
+      <!-- TODO: actualizar copy del banner de cookies -->
+      <p class="cookie-banner__text">Usamos cookies necesarias para el funcionamiento y otras opcionales para mejorar la experiencia.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="button button--primary" type="button" data-cookie-accept>Aceptar todo</button>
+      <button class="button button--secondary" type="button" data-cookie-reject>Rechazar</button>
+      <button class="button button--ghost" type="button" data-cookie-config>Configurar</button>
+    </div>
+  </div>
+
+  <div class="cookie-modal" data-cookie-modal aria-hidden="true">
+    <div class="cookie-modal__backdrop" data-cookie-close></div>
+    <div class="cookie-modal__content" role="dialog" aria-modal="true" aria-label="Configurar cookies">
+      <button class="cookie-modal__close" type="button" data-cookie-close aria-label="Cerrar">×</button>
+      <h3>Configurar cookies</h3>
+      <div class="cookie-modal__options">
+        <label class="cookie-toggle">
+          <input type="checkbox" checked disabled />
+          <span class="cookie-toggle__slider"></span>
+          <span class="cookie-toggle__label">Necesarias</span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" data-cookie-analytics />
+          <span class="cookie-toggle__slider"></span>
+          <span class="cookie-toggle__label">Analíticas</span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" data-cookie-marketing />
+          <span class="cookie-toggle__slider"></span>
+          <span class="cookie-toggle__label">Marketing</span>
+        </label>
+      </div>
+      <button class="button button--primary" type="button" data-cookie-save>Guardar</button>
     </div>
   </div>
 
